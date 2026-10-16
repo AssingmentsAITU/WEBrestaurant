@@ -64,8 +64,6 @@ function clearErrors() {
     errorInputs.forEach(el => el.classList.remove("input-error"));
 }
 
-
-
 // Task 4
 
 // Palette of background combinations matching your site's CSS variables
@@ -139,3 +137,37 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+// ===== Task 2: Accordion (FAQ) =====
+const accordionHeaders = document.querySelectorAll(".accordion-header");
+
+accordionHeaders.forEach(function (header) {
+    header.addEventListener("click", function () {
+        const item = header.parentElement;
+        const content = header.nextElementSibling;
+        const isOpen = item.classList.contains("active");
+
+        if (isOpen) {
+            item.classList.remove("active");
+            content.style.maxHeight = null;
+            header.setAttribute("aria-expanded", "false");
+        } else {
+            item.classList.add("active");
+            content.style.maxHeight = content.scrollHeight + "px";
+            header.setAttribute("aria-expanded", "true");
+        }
+    });
+});
+
+const now = new Date();
+const options = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true
+};
+const dateTimeEl = document.getElementById('date-time');
+if (dateTimeEl) {
+    dateTimeEl.textContent = now.toLocaleDateString("en-US", options);
+}
