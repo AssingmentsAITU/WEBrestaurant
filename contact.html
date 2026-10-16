@@ -36,7 +36,7 @@
             <h2>Book a Table</h2>
             <p style="text-align: center;">Please fill the form below, and our manager will contact you to confirm the booking.</p>
            
-            <form id="contact-form" action="#" method="POST">
+            <form id="contact-form" name="book-form" action="#" onsubmit="return validateForm()" method="POST">
                 
                 <div class="form-group">
                     <label for="name">Your Name:</label>
@@ -85,5 +85,6 @@
         <p>Team members: Alizhan Rymkhan, Adilbek Shangerey, Yerassyl Gabbas</p>
     </div> 
     </footer> 
+    <script src="script.js"></script>
 </body>
 </html>

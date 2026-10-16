@@ -28,6 +28,7 @@
             <a href="Drinks.html">Drinks</a>
             <a href="gallery.html">Gallery</a>
             <a href="contact.html">Contact</a>
+            <button id="bg-toggle-btn" class="theme-btn">Change Theme</button>
         </nav>
     </header>
     <main>
@@ -38,7 +39,10 @@
             <div id="main-text-main-block">
                 <p class="eyebrow">Coastal Japanese Cuisine</p>
                 <h2>Where the Sea<br><span>Meets the Table</span></h2>
-                <a href="contact.html" class="submit-btn reserve-btn">Reserve a Table</a>
+                <button id="open-modal-btn" class="submit-btn reserve-btn">Reserve a Table</button>
+
+
+
             </div>
         </section>
         <section class="cards">
@@ -51,6 +55,7 @@
                     <p>Explore our fresh, farm-to-table coastal Japanese dishes prepared daily.</p>
                     <a href="Dishes.html"><button>View Dishes</button></a>
                 </div>
+            
 
                 
                 <div class="card">
@@ -107,5 +112,57 @@
         <p>Team members: Alizhan Rymkhan, Adilbek Shangerey, Yerassyl Gabbas</p>
     </div> 
     </footer> 
+
+    <div id="booking-modal" class="modal-overlay">
+        <div class="modal-content">
+        <span class="close-btn" id="close-modal-btn">&times;</span>
+        
+        <h2>Book a Table</h2>
+        <p style="text-align: center;">Please fill the form below, and our manager will contact you to confirm the booking.</p>
+        
+        <form id="contact-form" name="book-form" action="#" onsubmit="return validateForm(event)" method="POST">
+                <div class="form-group">
+                    <label for="name">Your Name:</label>
+                    <input type="text" id="name" name="name" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Your Email:</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="hall">Choose Hall: </label>
+                    <select id="hall" name="hall" class="form-control">
+                        <option value="main">Main Hall</option>
+                        <option value="terrace">Summer-Terrace</option>
+                        <option value="vip">VIP-Room</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Table Type:</label><br>
+                    <input type="radio" id="table2" name="table_type" value="2_persons" checked>
+                    <label for="table2" style="display:inline; font-weight:normal;">For Two</label><br>
+                    
+                    <input type="radio" id="table4" name="table_type" value="4_persons">
+                    <label for="table4" style="display:inline; font-weight:normal;">For four</label><br>
+                    
+                    <input type="radio" id="tableLarge" name="table_type" value="large">
+                    <label for="tableLarge" style="display:inline; font-weight:normal;">For Big Company</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Your Requests</label>
+                    <textarea id="message" name="message" rows="4" class="form-control" placeholder="For example: Allergies, Kids Table and ETC...."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn" style="width: 100%;">Submit Request</button>
+                </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+
+    
 </body>
 </html>
