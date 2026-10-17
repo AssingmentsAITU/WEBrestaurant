@@ -66,7 +66,7 @@ function clearErrors() {
 
 // Task 4
 
-// Palette of background combinations matching your site's CSS variables
+// ===== Task 4: Theme Toggle with localStorage Persistence =====
 const colorPalettes = [
     { bg: "#EFE6D6", sand: "#FAF7F2", card: "#E3D2B8" }, // Original Warm Cream
     { bg: "#E2E8D5", sand: "#F2F5ED", card: "#CCD8B8" }, // Sage/Jade
@@ -77,12 +77,54 @@ const colorPalettes = [
 
 let currentPaletteIndex = 0;
 
+// Function to apply a theme index to CSS variables
+function applyTheme(index) {
+    const theme = colorPalettes[index];
+    const root = document.documentElement;
+
+    root.style.setProperty("--color-bg", theme.bg);
+    root.style.setProperty("--color-sand", theme.sand);
+    root.style.setProperty("--color-bg-card", theme.card);
+
+    if (theme.bg === "#2B2016") {
+        root.style.setProperty("--color-ink", "#F7F1E6");
+        root.style.setProperty("--color-wood", "#EFE6D6");
+    } else {
+        root.style.setProperty("--color-ink", "#2B2016");
+        root.style.setProperty("--color-wood", "#3B2A20");
+    }
+}
+
+// 1. Check for saved theme on page load and apply it immediately
+const savedThemeIndex = localStorage.getItem("userThemeIndex");
+if (savedThemeIndex !== null) {
+    currentPaletteIndex = parseInt(savedThemeIndex, 10);
+    applyTheme(currentPaletteIndex);
+}
+
+// 2. Set up event listener when DOM is ready
+document.addEventListener("DOMContentLoaded", function () {
+    const bgBtn = document.getElementById("bg-toggle-btn");
+
+    if (bgBtn) {
+        bgBtn.addEventListener("click", function () {
+            // Cycle to next palette
+            currentPaletteIndex = (currentPaletteIndex + 1) % colorPalettes.length;
+
+            // Apply styles and save choice to localStorage
+            applyTheme(currentPaletteIndex);
+            localStorage.setItem("userThemeIndex", currentPaletteIndex);
+        });
+    }
+});
+
+// ===== Task 3: Modal Popup Logic =====
 document.addEventListener("DOMContentLoaded", function () {
     const modal = document.getElementById("booking-modal");
     const openBtn = document.getElementById("open-modal-btn");
     const closeBtn = document.getElementById("close-modal-btn");
 
-    // 1. Open popup when "Reserve a Table" button is clicked
+    // Open modal on "Reserve a Table" click
     if (openBtn && modal) {
         openBtn.addEventListener("click", function (event) {
             event.preventDefault();
@@ -90,14 +132,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // 2. Close popup when 'X' button is clicked
+    // Close modal on 'X' button click
     if (closeBtn && modal) {
         closeBtn.addEventListener("click", function () {
             modal.classList.remove("active");
         });
     }
 
-    // 3. Close popup when clicking outside the modal box on the dark background
+    // Close modal on outside click (dark overlay)
     if (modal) {
         window.addEventListener("click", function (event) {
             if (event.target === modal) {
@@ -105,36 +147,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    const bgBtn = document.getElementById("bg-toggle-btn");
-
-    if (!bgBtn) {
-        console.error("Button with id='bg-toggle-btn' was not found in the HTML.");
-        return;
-    }
-
-    bgBtn.addEventListener("click", function () {
-        // Cycle to next palette
-        currentPaletteIndex = (currentPaletteIndex + 1) % colorPalettes.length;
-        const theme = colorPalettes[currentPaletteIndex];
-
-        // Change the root CSS variables so all sections update
-        const root = document.documentElement;
-        root.style.setProperty("--color-bg", theme.bg);
-        root.style.setProperty("--color-sand", theme.sand);
-        root.style.setProperty("--color-bg-card", theme.card);
-
-        // Optional: invert text color if switching to dark mode
-        if (theme.bg === "#2B2016") {
-            root.style.setProperty("--color-ink", "#F7F1E6");
-            root.style.setProperty("--color-wood", "#EFE6D6");
-        } else {
-            root.style.setProperty("--color-ink", "#2B2016");
-            root.style.setProperty("--color-wood", "#3B2A20");
-        }
-    });
 });
 
 // ===== Task 2: Accordion (FAQ) =====
@@ -158,16 +170,21 @@ accordionHeaders.forEach(function (header) {
     });
 });
 
-const now = new Date();
-const options = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: true
-};
-const dateTimeEl = document.getElementById('date-time');
-if (dateTimeEl) {
-    dateTimeEl.textContent = now.toLocaleDateString("en-US", options);
+function updateDateTime() {
+    const dateTimeEl = document.getElementById('date-time');
+    if (dateTimeEl) {
+        const now = new Date();
+        const options = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true
+        };
+        dateTimeEl.textContent = now.toLocaleDateString("en-US", options);
+    }
 }
+updateDateTime();
+setInterval(updateDateTime, 1000);
