@@ -36,8 +36,10 @@
         <div class="booking-block">
             <h2>Book a Table</h2>
             <p style="text-align: center;">Please fill the form below, and our manager will contact you to confirm the booking.</p>
-           
+            <div id="form-feedback" style="display: none; padding: 1rem; margin-top: 1rem; border-radius: 4px; text-align: center;"></div>
+            <button class="submit-btn" id="clear-btn">Clear</button>
             <form id="contact-form" name="book-form" action="#" onsubmit="return validateForm()" method="POST">
+                
                 
                 <div class="form-group">
                     <label for="name">Your Name:</label>
@@ -76,6 +78,7 @@
                 </div>
 
                 <button type="submit" class="submit-btn" style="width: 100%;">Submit Request</button>
+
             </form>
         </div>
     </main>
