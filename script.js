@@ -188,3 +188,18 @@ function updateDateTime() {
 }
 updateDateTime();
 setInterval(updateDateTime, 1000);
+
+function sayHello() {
+    console.log("Hello user!")
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const bookatablebtn = document.getElementById("book-a-table-btn");
+    let message = "Hello :)";
+    if (bookatablebtn) {
+        bookatablebtn.addEventListener("click", function() {
+            bookatablebtn.innerHTML = message;
+        }
+    );
+    }
+});
