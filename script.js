@@ -404,9 +404,12 @@ const yuzuRestaurant = {
     currentDay: weekday[date.getDay()],
 
     isOpenNow: function () {
-        const currentHour = date.getHours;
+        const currentHour = date.getHours();
         switch (this.currentDay) {
-            case "Monday" || "Tuesday" || "Wednesday" || "Thursday":
+            case "Monday": 
+            case  "Tuesday": 
+            case  "Wednesday":  
+            case "Thursday":
                 return currentHour >= 10 && currentHour < 23;
             case "Friday":
                 return currentHour >= 10 && currentHour < 0;
@@ -414,11 +417,13 @@ const yuzuRestaurant = {
                 return currentHour >= 11 && currentHour < 0;
             case "Sunday":
                 return currentHour >= 11 && currentHour < 22;
+            default:
+                return false;
         }
     },
     
     getStatusMessage: function () {
-        if (this.isOpenNow) {
+        if (this.isOpenNow()) {
             return `Restaurant is currently OPEN, visit us at `;
         }
         else {
@@ -462,3 +467,52 @@ function renderSpecials() {
 }
 document.addEventListener("DOMContentLoaded", renderSpecials);
 
+// ===== 1. Play Sound Effects (Web Audio API - No external files needed) =====
+function playClickSound() {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext) return;
+
+    const audioCtx = new AudioContext();
+    const oscillator = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+
+    oscillator.type = "sine";
+    oscillator.frequency.setValueAtTime(587.33, audioCtx.currentTime); // High pitch notification chime
+
+    gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.25);
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+
+    oscillator.start();
+    oscillator.stop(audioCtx.currentTime + 0.25);
+}
+
+// Attach sound to action buttons
+document.addEventListener("DOMContentLoaded", function () {
+    const soundButtons = document.querySelectorAll(".submit-btn, .theme-btn, #open-modal-btn");
+    soundButtons.forEach(button => {
+        button.addEventListener("click", playClickSound);
+    });
+});
+
+
+// ===== 2. Event-Triggered JS Animations =====
+document.addEventListener("DOMContentLoaded", function () {
+    const cards = document.querySelectorAll(".card, .special-card");
+
+    cards.forEach(card => {
+        card.style.transition = "transform 0.3s ease, box-shadow 0.3s ease";
+
+        // Dynamic JS scale & tilt on hover
+        card.addEventListener("mouseenter", function () {
+            this.style.transform = "translateY(-6px) scale(1.02)";
+        });
+
+        // Reset transform on mouse leave
+        card.addEventListener("mouseleave", function () {
+            this.style.transform = "translateY(0) scale(1)";
+        });
+    });
+});
