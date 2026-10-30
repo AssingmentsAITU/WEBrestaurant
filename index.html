@@ -14,6 +14,9 @@
 
 
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Assignment 6: jQuery from CDN -->
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
 </head>
 <body>
     <header id="main-header">
@@ -81,10 +84,48 @@
                     <h3>Open Kitchen</h3>
                     <p>Watch Head Chef Possuka create culinary magic right before your eyes.</p>
                     <a href="about.html"><button>Our Story</button></a>
-                </div>                    
+                </div>
             </div>
         </section>
-        
+
+        <!-- Assignment 6, Task 5: animated number counter -->
+        <section class="section stats-section">
+            <div class="container">
+                <p class="eyebrow" style="text-align: center;">Yuzu in numbers</p>
+                <h2 class="team-title">Since our first pop-up</h2>
+                <div class="stats-grid">
+                    <div class="stat">
+                        <span class="stat-number" data-target="12000" data-suffix="+">0</span>
+                        <p>Happy guests</p>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="45" data-suffix="">0</span>
+                        <p>Dishes on the menu</p>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="850" data-suffix="+">0</span>
+                        <p>5-star reviews</p>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="6" data-suffix=" yrs">0</span>
+                        <p>Of fresh woks</p>
+                    </div>
+                </div>
+
+                <!-- Assignment 6, Task 8: copy to clipboard -->
+                <div class="promo-box">
+                    <p>Use this promo code when booking for 10% off your first dinner:</p>
+                    <div class="copy-snippet">
+                        <code class="copy-text">SE2513</code>
+                        <button type="button" class="copy-btn" aria-label="Copy promo code">
+                            <span class="copy-icon">⧉</span>
+                            <span class="copy-tooltip">Copied to clipboard!</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="section team-section">
             <div class="container">
                 <p class="eyebrow" style="text-align: center;">Meet the Creators</p>

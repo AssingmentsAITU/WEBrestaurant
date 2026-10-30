@@ -10,6 +10,9 @@
 
 
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Assignment 6: jQuery from CDN -->
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
 </head>
 
 <body>
@@ -31,6 +34,12 @@
     
     <main>
     <h1 class="DishesDrinks-title">Menu</h1>
+    <!-- Assignment 6, Tasks 1-2: live filter + autocomplete -->
+    <div class="menu-search">
+        <input type="text" id="menu-search-input" placeholder="Search the menu, e.g. salmon, tea..." autocomplete="off" aria-label="Search the menu">
+        <ul id="search-suggestions" class="search-suggestions"></ul>
+        <p id="search-count" class="search-count"></p>
+    </div>
     <hr>
     <details>
         <summary>Appetizers</summary>

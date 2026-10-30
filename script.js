@@ -18,7 +18,7 @@ function validateForm() {
         showError(nameInput, "Name must be at least 2 characters long.");
         isValid = false;
     }
-     else if (!nameRegex.test(nameValue)) {
+    else if (!nameRegex.test(nameValue)) {
         showError(nameInput, "Peelaese enter nonumber ok.");
         isValid = false;
     }
@@ -241,10 +241,10 @@ document.addEventListener("DOMContentLoaded", function () {
     let isToggled = false;
     if (bookatablebtn) {
         originalText = bookatablebtn.textContent;
-        
+
         bookatablebtn.addEventListener("click", function () {
             isToggled = !isToggled;
-            bookatablebtn.innerHTML = isToggled ?  message  : originalText;
+            bookatablebtn.innerText = isToggled ? message : originalText;
         }
         );
     }
@@ -254,7 +254,7 @@ document.addEventListener("DOMContentLoaded", function () {
 const stars = document.querySelectorAll(".star");
 
 stars.forEach((star, index) => {
-    star.addEventListener("click", function() {
+    star.addEventListener("click", function () {
         stars.forEach((s, i) => {
             s.style.color = i <= index ? "#fd5000" : "gray";
         });
@@ -284,7 +284,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.addEventListener("keydown", function (event) {
             const activeEl = document.activeElement;
             const navArray = Array.from(navItems);
-            
+
             // Check if keyboard focus is currently inside the nav menu
             let currentIndex = navArray.indexOf(activeEl);
 
@@ -328,7 +328,7 @@ function displayTimeBasedGreeting() {
     }
 
     // Assign text response using switch
-    switch (timeBlock) {    
+    switch (timeBlock) {
         case "morning":
             greetingEl.textContent = "Good Morning! Fresh tea and rolls ready for early visitors.";
             break;
@@ -341,7 +341,7 @@ function displayTimeBasedGreeting() {
         case "night":
             greetingEl.textContent = "Late Night Special! Kitchen open late for evening cravings.";
             break;
-    }   
+    }
 }
 
 document.addEventListener("DOMContentLoaded", displayTimeBasedGreeting);
@@ -356,49 +356,22 @@ function submitFormAsync(formData, callback) {
         } else {
             callback("Submission failed. Please try again later.", null);
         }
-    }, 600);
+    }, 2000); // short delay that simulates a server call
 }
 
-const contactForm = document.getElementById("contact-form");
+// The submit handler now lives in the jQuery section below (Assignment 6, Task 6)
 
-if (contactForm) {
-    contactForm.addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevent page refresh
-
-        if (validateForm()) {
-            const formData = {
-                name: document.getElementById("name").value,
-                email: document.getElementById("email").value,
-                hall: document.getElementById("hall").value
-            };
-
-            // Callback function passed as the second argument
-            submitFormAsync(formData, function (error, successMessage) {
-                const feedbackEl = document.getElementById("form-feedback");
-                
-                if (feedbackEl) {
-                    feedbackEl.style.display = "block";
-                    if (error) {
-                        feedbackEl.style.backgroundColor = "#f8d7da";
-                        feedbackEl.style.color = "#721c24";
-                        feedbackEl.textContent = error;
-                    } else {
-                        feedbackEl.style.backgroundColor = "#d4edda";
-                        feedbackEl.style.color = "#155724";
-                        feedbackEl.textContent = successMessage;
-                        contactForm.reset();
-                    }
-                }
-            });
-        }
-    });
+function capitalize(word) {
+    firstLetter = word.slice(0, 1);
+    otherLetters = word.slice(1);
+    return firstLetter.toUpperCase() + otherLetters.toLowerCase();
 }
 
 // 1 yuzu object
-const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const date = new Date();
 const yuzuRestaurant = {
-    
+
     name: "Yuzu Kitchen",
     location: "Astana, Mangilik El Ave.",
     currentDay: weekday[date.getDay()],
@@ -406,9 +379,9 @@ const yuzuRestaurant = {
     isOpenNow: function () {
         const currentHour = date.getHours();
         switch (this.currentDay) {
-            case "Monday": 
-            case  "Tuesday": 
-            case  "Wednesday":  
+            case "Monday":
+            case "Tuesday":
+            case "Wednesday":
             case "Thursday":
                 return currentHour >= 10 && currentHour < 23;
             case "Friday":
@@ -421,7 +394,7 @@ const yuzuRestaurant = {
                 return false;
         }
     },
-    
+
     getStatusMessage: function () {
         if (this.isOpenNow()) {
             return `Restaurant is currently OPEN, visit us at `;
@@ -440,8 +413,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 const chefSpecials = [
-    { name: "Yuzu Glazed Salmon", price: "$18", description: "Fresh salmon with citrus reduction", image_src: "/images/glazed-salmon.jpg"},
-    { name: "Matcha Pork Ramen", price: "$15", description: "Rich broth with handmade noodles", image_src: "/images/matcha-pork-ramen.webp"},
+    { name: "Yuzu Glazed Salmon", price: "$18", description: "Fresh salmon with citrus reduction", image_src: "/images/glazed-salmon.jpg" },
+    { name: "Matcha Pork Ramen", price: "$15", description: "Rich broth with handmade noodles", image_src: "/images/matcha-pork-ramen.webp" },
     { name: "Crispy Soft Shell Crab", price: "$22", description: "Served with house spicy mayo", image_src: "/images/shell-crabs.jpg" }
 ]
 
@@ -515,4 +488,464 @@ document.addEventListener("DOMContentLoaded", function () {
             this.style.transform = "translateY(0) scale(1)";
         });
     });
+});
+
+/* =====================================================
+   ASSIGNMENT 6 — jQuery
+   ===================================================== */
+
+// Task 0: jQuery setup check
+$(document).ready(function () {
+    console.log("jQuery is ready!");
+});
+
+// Helpers shared by several tasks
+function escapeRegExp(text) {
+    return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function escapeHtml(text) {
+    return $("<div>").text(text).html();
+}
+
+
+// ===== Task 7: Notification system (toasts) =====
+// Usage: showToast("Item added", "success" | "info" | "error")
+function showToast(message, type, duration) {
+    type = type || "success";
+    duration = duration || 3000;
+    const icons = { success: "✔", info: "ℹ", error: "✖" };
+
+    let $container = $("#toast-container");
+    if ($container.length === 0) {
+        $container = $('<div id="toast-container" aria-live="polite"></div>').appendTo("body");
+    }
+
+    const $toast = $('<div class="toast"></div>')
+        .addClass("toast-" + type)
+        .append($('<span class="toast-icon"></span>').text(icons[type] || ""))
+        .append($("<span></span>").text(message));
+
+    $toast.appendTo($container)
+        .fadeIn(300)
+        .delay(duration)
+        .fadeOut(600, function () {
+            $(this).remove();
+        });
+}
+
+
+$(document).ready(function () {
+
+    // ===== Task 4: Colorful scroll progress bar =====
+    const $bar = $('<div id="scroll-progress"></div>');
+    const $label = $('<div id="scroll-progress-label"></div>');
+    $("body").prepend($bar).prepend($label);
+
+    function updateProgress() {
+        const scrollTop = $(window).scrollTop();
+        const scrollable = $(document).height() - $(window).height();
+        const percent = scrollable > 0 ? Math.min(100, (scrollTop / scrollable) * 100) : 0;
+
+        $bar.css("width", percent + "%");
+        $label.text(Math.round(percent) + "% read");
+
+        if (percent > 1) {
+            $label.stop(true).fadeIn(200);
+        } else {
+            $label.stop(true).fadeOut(200);
+        }
+    }
+    $(window).on("scroll resize", updateProgress);
+    updateProgress();
+
+
+    // ===== Task 1: Real-time search and live filter (Dishes / Drinks) =====
+    const $searchInput = $("#menu-search-input");
+    const $menuItems = $(".Menumenu");
+    const $suggestions = $("#search-suggestions");
+    const $searchCount = $("#search-count");
+
+    // Read the item name without the price, e.g. "Spring Rolls - 5" -> "Spring Rolls"
+    function itemName($item) {
+        return $item.find("span").first().text().split(" - ")[0].trim();
+    }
+
+    function filterMenu(term) {
+        term = term.trim().toLowerCase();
+
+        // .filter() keeps only the items whose name contains the search term
+        const $matches = $menuItems.filter(function () {
+            return itemName($(this)).toLowerCase().includes(term);
+        });
+
+        $menuItems.hide();
+        $matches.show();
+
+        // Open categories that contain matches, hide empty ones
+        $("main details").each(function () {
+            const $details = $(this);
+            const hasMatch = $details.find(".Menumenu").filter($matches).length > 0;
+
+            if (term === "") {
+                $details.show().prop("open", false);
+            } else {
+                $details.toggle(hasMatch).prop("open", hasMatch);
+            }
+        });
+
+        if (term === "") {
+            $searchCount.text("");
+        } else if ($matches.length === 0) {
+            $searchCount.text('No items match "' + term + '"');
+        } else {
+            $searchCount.text($matches.length + " item(s) found");
+        }
+    }
+
+
+    // ===== Task 2: Autocomplete search suggestions =====
+    // Build the suggestion list from the menu itself: name + category
+    const menuNames = $menuItems.map(function () {
+        return {
+            name: itemName($(this)),
+            category: $(this).closest("details").find("summary").text().trim(),
+            $el: $(this)
+        };
+    }).get();
+
+    let activeIndex = -1;
+
+    function showSuggestions(term) {
+        term = term.trim();
+        $suggestions.empty();
+        activeIndex = -1;
+
+        if (term === "") {
+            $suggestions.hide();
+            return;
+        }
+
+        const regex = new RegExp("(" + escapeRegExp(term) + ")", "ig");
+        const found = menuNames.filter(function (item) {
+            return item.name.toLowerCase().includes(term.toLowerCase());
+        }).slice(0, 8);
+
+        if (found.length === 0) {
+            $suggestions.append('<li class="no-results">No suggestions</li>');
+        }
+
+        $.each(found, function (i, item) {
+            const boldName = escapeHtml(item.name).replace(regex, "<strong>$1</strong>");
+            $("<li></li>")
+                .html("<span>" + boldName + "</span><small>" + escapeHtml(item.category) + "</small>")
+                .data("item", item)
+                .appendTo($suggestions);
+        });
+
+        $suggestions.slideDown(150);
+    }
+
+    function chooseSuggestion($li) {
+        const item = $li.data("item");
+        if (!item) return;
+
+        $searchInput.val(item.name);
+        $suggestions.hide();
+        filterMenu(item.name);
+
+        // Scroll to the chosen dish and flash it
+        $("html, body").animate({ scrollTop: item.$el.offset().top - 120 }, 400);
+        item.$el.css("background-color", "#ffe066")
+            .animate({ opacity: 0.4 }, 200).animate({ opacity: 1 }, 200)
+            .animate({ opacity: 0.4 }, 200).animate({ opacity: 1 }, 200, function () {
+                $(this).css("background-color", "");
+            });
+    }
+
+    if ($searchInput.length) {
+        // Filter in real time as the user types
+        $searchInput.on("keyup input", function (e) {
+            if (["ArrowUp", "ArrowDown", "Enter", "Escape"].includes(e.key)) return;
+            filterMenu($(this).val());
+            showSuggestions($(this).val());
+        });
+
+        // Keyboard navigation inside the dropdown
+        $searchInput.on("keydown", function (e) {
+            const $items = $suggestions.find("li").not(".no-results");
+            if (!$items.length) return;
+
+            if (e.key === "ArrowDown") {
+                e.preventDefault();
+                activeIndex = (activeIndex + 1) % $items.length;
+            } else if (e.key === "ArrowUp") {
+                e.preventDefault();
+                activeIndex = (activeIndex - 1 + $items.length) % $items.length;
+            } else if (e.key === "Enter" && activeIndex >= 0) {
+                e.preventDefault();
+                chooseSuggestion($items.eq(activeIndex));
+                return;
+            } else if (e.key === "Escape") {
+                $suggestions.hide();
+                return;
+            } else {
+                return;
+            }
+            $items.removeClass("active").eq(activeIndex).addClass("active");
+        });
+
+        $suggestions.on("click", "li", function () {
+            chooseSuggestion($(this));
+        });
+
+        // Close the dropdown when clicking anywhere else
+        $(document).on("click", function (e) {
+            if (!$(e.target).closest(".menu-search").length) {
+                $suggestions.hide();
+            }
+        });
+    }
+
+
+    // ===== Task 3: Search highlighting (About page FAQ + text) =====
+    const $faqInput = $("#faq-search-input");
+    const $faqCount = $("#faq-search-count");
+
+    if ($faqInput.length) {
+        // Only plain-text elements, so replacing their HTML can't break nested tags
+        const $highlightTargets = $("main").find("h1, h2, h3, p, li, .accordion-header")
+            .not(".eyebrow, .search-count")
+            .filter(function () {
+                return $(this).children().length === 0;
+            });
+
+        // Remember the original text of every element
+        $highlightTargets.each(function () {
+            $(this).data("original-text", $(this).text());
+        });
+
+        $faqInput.on("keyup input", function (e) {
+            const term = $(this).val().trim();
+            let total = 0;
+
+            $highlightTargets.each(function () {
+                const $el = $(this);
+                const original = $el.data("original-text");
+
+                if (term === "") {
+                    $el.text(original);
+                    return;
+                }
+
+                const regex = new RegExp("(" + escapeRegExp(term) + ")", "gi");
+                const matches = original.match(regex);
+
+                if (matches) {
+                    total += matches.length;
+                    // .html() + regex: wrap every match in <mark>
+                    $el.html(escapeHtml(original).replace(regex, '<mark class="highlight">$1</mark>'));
+
+                    // Open the FAQ answer so the highlighted text is visible
+                    const $item = $el.closest(".accordion-item");
+                    if ($item.length && !$item.hasClass("active")) {
+                        $item.find(".accordion-header").trigger("click");
+                    }
+                } else {
+                    $el.text(original);
+                }
+            });
+
+            if (term === "") {
+                $faqCount.text("");
+                return;
+            }
+
+            $faqCount.text(total ? total + ' match(es) for "' + term + '"' : 'Nothing found for "' + term + '"');
+
+            // Press Enter to jump to the first match
+            if (total && e.key === "Enter") {
+                $("html, body").animate({ scrollTop: $("mark.highlight").first().offset().top - 150 }, 400);
+            }
+        });
+    }
+
+
+    // ===== Task 5: Animated number counter =====
+    const $stats = $(".stats-section");
+    let countersStarted = false;
+
+    function startCounters() {
+        if (countersStarted || !$stats.length) return;
+
+        const statsTop = $stats.offset().top;
+        const viewBottom = $(window).scrollTop() + $(window).height();
+        if (viewBottom < statsTop + 100) return; // not visible yet
+
+        countersStarted = true;
+        $(".stat-number").each(function () {
+            const $num = $(this);
+            const target = parseInt($num.data("target"), 10);
+            const suffix = $num.data("suffix") || "";
+
+            // Animate a plain object's property and print it on every step
+            $({ value: 0 }).animate({ value: target }, {
+                duration: 2200,
+                easing: "swing",
+                step: function (now) {
+                    $num.text(Math.floor(now).toLocaleString("en-US") + suffix);
+                },
+                complete: function () {
+                    $num.text(target.toLocaleString("en-US") + suffix);
+                }
+            });
+        });
+    }
+    $(window).on("scroll", startCounters);
+    startCounters();
+
+
+    // ===== Task 6: Loading spinner on submit =====
+    $("#contact-form").on("submit", function (e) {
+        e.preventDefault();
+        const $form = $(this);
+
+        if (!validateForm()) {
+            showToast("Please fix the highlighted fields.", "error");
+            return;
+        }
+
+        const $btn = $form.find('button[type="submit"]');
+        const originalHtml = $btn.html();
+
+        // Show spinner + "Please wait..." and block repeated clicks
+        $btn.prop("disabled", true)
+            .html('<span class="spinner"></span>Please wait...');
+
+        const formData = {
+            name: $("#name").val(),
+            email: $("#email").val(),
+            hall: $("#hall").val()
+        };
+
+        submitFormAsync(formData, function (error, successMessage) {
+            // Back to normal after the simulated server call
+            $btn.prop("disabled", false).html(originalHtml);
+
+            const $feedback = $("#form-feedback");
+            if (error) {
+                $feedback.css({ backgroundColor: "#f8d7da", color: "#721c24" }).text(error).slideDown();
+                showToast(error, "error");
+                return;
+            }
+
+            $feedback.css({ backgroundColor: "#d4edda", color: "#155724" }).text(successMessage).slideDown();
+            showToast("Form submitted successfully! See you soon, " + formData.name + ".", "success");
+            $form[0].reset();
+
+            // If the form is inside the booking modal (Main page), close it
+            $("#booking-modal").removeClass("active");
+        });
+    });
+
+
+    // ===== Task 7 (more uses): toasts for other user actions =====
+    $(".star").on("click", function () {
+        const rating = $(".star").index(this) + 1;
+        showToast("Thanks for rating us " + rating + "/5 ★", "info");
+    });
+
+    $("#bg-toggle-btn").on("click", function () {
+        // Wait for the theme handler to finish, then read the result
+        setTimeout(function () {
+            const dark = $("body").hasClass("dark-mode");
+            showToast(dark ? "Dark theme enabled" : "Light theme enabled", "info", 2000);
+        }, 0);
+    });
+
+    $("#clear-btn").on("click", function () {
+        showToast("Form cleared", "info", 2000);
+    });
+
+
+    // ===== Task 8: Copy to clipboard button =====
+    // Old-style copy: select a hidden textarea and run the "copy" command
+    function legacyCopy(text) {
+        const $temp = $("<textarea>").val(text).css({ position: "fixed", opacity: 0 }).appendTo("body");
+        $temp[0].select();
+        const ok = document.execCommand("copy");
+        $temp.remove();
+        return ok ? Promise.resolve() : Promise.reject();
+    }
+
+    function copyToClipboard(text) {
+        if (navigator.clipboard && window.isSecureContext) {
+            // Modern Clipboard API; if the browser refuses, use the fallback
+            return navigator.clipboard.writeText(text).catch(function () {
+                return legacyCopy(text);
+            });
+        }
+        // Fallback for http:// or file:// pages
+        return legacyCopy(text);
+    }
+
+    function showCopied($btn) {
+        const $icon = $btn.find(".copy-icon");
+        const $tooltip = $btn.find(".copy-tooltip");
+
+        $btn.addClass("copied");
+        $icon.text("✓");
+        $tooltip.stop(true, true).fadeIn(150);
+
+        clearTimeout($btn.data("timer"));
+        $btn.data("timer", setTimeout(function () {
+            $btn.removeClass("copied");
+            $icon.text("⧉");
+            $tooltip.fadeOut(200);
+        }, 2000));
+    }
+
+    $(".copy-btn").on("click", function () {
+        const $btn = $(this);
+        const text = $btn.siblings(".copy-text").text().trim();
+
+        copyToClipboard(text)
+            .then(function () {
+                showCopied($btn);
+                showToast('"' + text + '" copied to clipboard', "success", 2000);
+            })
+            .catch(function () {
+                showToast("Could not copy, please copy it manually.", "error");
+            });
+    });
+
+    // .on("copy"): also react when the user selects the snippet and presses Ctrl+C
+    $(".copy-text").on("copy", function () {
+        showCopied($(this).siblings(".copy-btn"));
+        showToast("Copied to clipboard!", "success", 2000);
+    });
+
+
+    // ===== Task 9: Image lazy loading =====
+    function lazyLoad() {
+        const viewBottom = $(window).scrollTop() + $(window).height();
+
+        $("img.lazy[data-src]").each(function () {
+            const $img = $(this);
+
+            // Load the image only once its top edge scrolls into view
+            if ($img.offset().top < viewBottom) {
+                $img.one("load", function () {
+                    $img.removeClass("lazy").css("opacity", 0).animate({ opacity: 1 }, 600);
+                }).one("error", function () {
+                    $img.removeClass("lazy").css("opacity", 1);
+                });
+
+                $img.attr("src", $img.attr("data-src")).removeAttr("data-src");
+                console.log("Lazy loaded:", $img.attr("alt"));
+            }
+        });
+    }
+    $(window).on("scroll resize", lazyLoad);
+    lazyLoad();
 });

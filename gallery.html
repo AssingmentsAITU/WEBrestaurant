@@ -11,6 +11,9 @@
 
   
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Assignment 6: jQuery from CDN -->
+  <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
 </head>
 <body>
 
@@ -48,28 +51,28 @@
   <div class="container gallery-stack">
 
     <figure class="gallery-item">
-      <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/33/31/a4/da/888-restaurant-open-kitchen.jpg?w=1200&h=1200&s=1" alt="Illustration of the open wok station with rising steam">
+      <img class="lazy" data-src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/33/31/a4/da/888-restaurant-open-kitchen.jpg?w=1200&h=1200&s=1" alt="Illustration of the open wok station with rising steam">
       <div class="gallery-caption">
         <p>The wok station — the loudest, busiest corner of the kitchen.</p>
       </div>
     </figure>
 
     <figure class="gallery-item">
-      <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0b/ca/d3/7d/wasabi.jpg?w=900&h=500&s=1" alt="Illustration of the sushi counter with rolls in progress">
+      <img class="lazy" data-src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0b/ca/d3/7d/wasabi.jpg?w=900&h=500&s=1" alt="Illustration of the sushi counter with rolls in progress">
       <div class="gallery-caption">
         <p>Fresh rolls, cut to order, at the sushi counter.</p>
       </div>
     </figure>
 
     <figure class="gallery-item">
-      <img src="https://platform.dc.eater.com/wp-content/uploads/sites/9/chorus/uploads/chorus_asset/file/23236343/D85_0431_HDR.jpeg?quality=90&strip=all&crop=0.01953125,0,99.9609375,100" alt="Illustration of the hall">
+      <img class="lazy" data-src="https://platform.dc.eater.com/wp-content/uploads/sites/9/chorus/uploads/chorus_asset/file/23236343/D85_0431_HDR.jpeg?quality=90&strip=all&crop=0.01953125,0,99.9609375,100" alt="Illustration of the hall">
       <div class="gallery-caption">
         <p>Where most evenings happen — simple tables, warm light, no rush.</p>
       </div>
     </figure>
 
     <figure class="gallery-item">
-      <img src="https://cdn.broadsheet.com.au/cache/38/d9/38d9dbc7490086ecfcff37d73f90228b.jpg" alt="Illustration of a dessert plate with matcha garnish">
+      <img class="lazy" data-src="https://cdn.broadsheet.com.au/cache/38/d9/38d9dbc7490086ecfcff37d73f90228b.jpg" alt="Illustration of a dessert plate with matcha garnish">
       <div class="gallery-caption">
         <p>Matcha dessert, plated right before it leaves the pass.</p>
       </div>
@@ -77,35 +80,35 @@
 
     
     <figure class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1768142984100-ea6444b691f5?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="our restaurant entrance exterior night">
+      <img class="lazy" data-src="https://images.unsplash.com/photo-1768142984100-ea6444b691f5?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="our restaurant entrance exterior night">
       <div class="gallery-caption">
         <p>The entrance on a quiet weeknight — the lanterns are usually the first thing people notice.</p>
       </div>
     </figure>
 
     <figure class="gallery-item">
-      <img src="https://static.vecteezy.com/system/resources/previews/077/185/359/large_2x/close-up-overhead-shot-of-a-japanese-ramen-bowl-with-noodles-boiled-eggs-vegetables-and-chopsticks-ready-to-eat-photo.jpg" alt="bowl close up overhead">
+      <img class="lazy" data-src="https://static.vecteezy.com/system/resources/previews/077/185/359/large_2x/close-up-overhead-shot-of-a-japanese-ramen-bowl-with-noodles-boiled-eggs-vegetables-and-chopsticks-ready-to-eat-photo.jpg" alt="bowl close up overhead">
       <div class="gallery-caption">
         <p>A bowl that's been on the menu since day one.</p>
       </div>
     </figure>
 
     <figure class="gallery-item">
-      <img src="https://static01.nyt.com/images/2023/10/11/multimedia/11wte-japanese-bars1-cfpq/05wte-japanese-bars1-cfpq-superJumbo.jpg" alt="japanese cocktail bar restaurant">
+      <img class="lazy" data-src="https://static01.nyt.com/images/2023/10/11/multimedia/11wte-japanese-bars1-cfpq/05wte-japanese-bars1-cfpq-superJumbo.jpg" alt="japanese cocktail bar restaurant">
       <div class="gallery-caption">
         <p>The bar — sake, cocktails, and the occasional debate over which one pairs with wasabi.</p>
       </div>
     </figure>
 
     <figure class="gallery-item">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ99Q1qTorz4WFEoO_o0-nEqb7RUigpF8Cc5VtVIjpYHKR0wiM1jYq-1A_8&s=10" alt="chef hands cutting sushi close up">
+      <img class="lazy" data-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ99Q1qTorz4WFEoO_o0-nEqb7RUigpF8Cc5VtVIjpYHKR0wiM1jYq-1A_8&s=10" alt="chef hands cutting sushi close up">
       <div class="gallery-caption">
         <p>The kind of detail work that never makes it onto the menu description.</p>
       </div>
     </figure>
 
     <figure class="gallery-item">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1KFDitI-UQ9jQE6YGe2ng6HW4W5Gn-4Fiz7GIVtI2bxyNedDZPzAkNBs&s=10" alt="japanese restaurant interior lighting detail">
+      <img class="lazy" data-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1KFDitI-UQ9jQE6YGe2ng6HW4W5Gn-4Fiz7GIVtI2bxyNedDZPzAkNBs&s=10" alt="japanese restaurant interior lighting detail">
       <div class="gallery-caption">
         <p>Small details — the ones regulars notice before the food even arrives.</p>
       </div>

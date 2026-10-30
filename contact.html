@@ -11,6 +11,9 @@
 
     <link rel="stylesheet" href="css/style.css">
 
+    <!-- Assignment 6: jQuery from CDN -->
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+
 </head>
 <body>
     
@@ -80,6 +83,26 @@
                 <button type="submit" class="submit-btn" style="width: 100%;">Submit Request</button>
 
             </form>
+
+            <!-- Assignment 6, Task 8: copy to clipboard -->
+            <div class="contact-info">
+                <h3>Reach us directly</h3>
+                <div class="copy-snippet">
+                    <span class="copy-label">Address</span>
+                    <code class="copy-text">Astana, Mangilik El Ave. 55</code>
+                    <button type="button" class="copy-btn" aria-label="Copy address"><span class="copy-icon">⧉</span><span class="copy-tooltip">Copied to clipboard!</span></button>
+                </div>
+                <div class="copy-snippet">
+                    <span class="copy-label">Phone</span>
+                    <code class="copy-text">+7 (717) 255-25-13</code>
+                    <button type="button" class="copy-btn" aria-label="Copy phone number"><span class="copy-icon">⧉</span><span class="copy-tooltip">Copied to clipboard!</span></button>
+                </div>
+                <div class="copy-snippet">
+                    <span class="copy-label">Email</span>
+                    <code class="copy-text">hello@yuzukitchen.kz</code>
+                    <button type="button" class="copy-btn" aria-label="Copy email"><span class="copy-icon">⧉</span><span class="copy-tooltip">Copied to clipboard!</span></button>
+                </div>
+            </div>
         </div>
     </main>
 

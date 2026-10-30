@@ -899,3 +899,305 @@ summary:hover {
     grid-template-rows: repeat(9, 220px);
   }
 }
+
+/* =====================================================
+   Assignment 6 — jQuery features
+   ===================================================== */
+
+/* Task 4: scroll progress bar */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 6px;
+  width: 0;
+  z-index: 3000;
+  background: linear-gradient(90deg, #f6d365, #fda085, #A63A2E, #5C6E4A, #f6d365);
+  background-size: 300% 100%;
+  animation: progress-shimmer 4s linear infinite;
+  border-radius: 0 6px 6px 0;
+  box-shadow: 0 0 10px rgba(253, 160, 133, 0.8);
+  transition: width 0.1s linear;
+}
+#scroll-progress::after {
+  content: "🍋";
+  position: absolute;
+  right: -10px;
+  top: -7px;
+  font-size: 16px;
+}
+#scroll-progress-label {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 3000;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  background: var(--color-btn-bg);
+  color: var(--color-btn-text);
+  opacity: 0.85;
+  display: none;
+}
+@keyframes progress-shimmer {
+  from { background-position: 0% 0; }
+  to   { background-position: 300% 0; }
+}
+
+/* Tasks 1-2: menu search + autocomplete */
+.menu-search,
+.faq-search {
+  position: relative;
+  max-width: 520px;
+  margin: 1rem auto 1.5rem;
+  padding: 0 16px;
+}
+.menu-search input,
+.faq-search input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.8rem 1rem 0.8rem 2.6rem;
+  font-size: 1rem;
+  border: 2px solid var(--color-input-border);
+  border-radius: 999px;
+  background: var(--color-input-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23A63A2E' stroke-width='2.5'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-4-4'/%3E%3C/svg%3E") no-repeat 1rem center;
+  color: var(--color-input-text);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.menu-search input:focus,
+.faq-search input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 4px rgba(166, 58, 46, 0.15);
+}
+.search-suggestions {
+  display: none;
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  top: 3.4rem;
+  margin: 0;
+  padding: 0.3rem 0;
+  list-style: none;
+  background: var(--color-input-bg);
+  color: var(--color-input-text);
+  border: 1px solid var(--color-input-border);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  z-index: 50;
+  max-height: 260px;
+  overflow-y: auto;
+}
+.search-suggestions li {
+  padding: 0.55rem 1.1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.search-suggestions li small {
+  opacity: 0.6;
+}
+.search-suggestions li:hover,
+.search-suggestions li.active {
+  background: var(--color-hover-bg);
+}
+.search-suggestions li.no-results {
+  cursor: default;
+  opacity: 0.7;
+}
+.search-suggestions strong {
+  color: var(--color-accent);
+}
+.search-count {
+  text-align: center;
+  font-size: 0.9rem;
+  margin: 0.5rem 0 0;
+  min-height: 1.2em;
+  opacity: 0.8;
+}
+
+/* Task 3: search highlighting */
+mark.highlight {
+  background: linear-gradient(120deg, #ffe066 0%, #fda085 100%);
+  color: #2B2016;
+  padding: 0 2px;
+  border-radius: 3px;
+}
+
+/* Task 5: animated counter */
+.stats-section {
+  padding: 4rem 0;
+  background-color: var(--color-bg-card);
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.stat {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  border-radius: 12px;
+  background: var(--color-sand);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+.stat-number {
+  display: block;
+  font-family: 'Rampart One', sans-serif;
+  font-size: 2.6rem;
+  color: var(--color-accent);
+}
+.stat p {
+  margin: 0.4rem 0 0;
+  color: var(--color-ink);
+}
+
+/* Task 6: loading spinner on submit */
+.spinner {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.5em;
+  vertical-align: -0.15em;
+  border: 3px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+button:disabled,
+.submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Task 7: toast notifications */
+#toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  left: auto;
+  z-index: 4000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: calc(100vw - 40px);
+}
+.toast {
+  display: none;
+  min-width: 240px;
+  max-width: 360px;
+  padding: 0.9rem 1.2rem;
+  border-radius: 10px;
+  color: #fff;
+  background: #2B2016;
+  border-left: 6px solid #5C6E4A;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  font-size: 0.95rem;
+}
+.toast.toast-success { border-left-color: #6fcf73; }
+.toast.toast-info    { border-left-color: #f6d365; }
+.toast.toast-error   { border-left-color: #e74c3c; }
+.toast .toast-icon { margin-right: 0.5rem; }
+
+/* Task 8: copy to clipboard */
+.promo-box,
+.contact-info {
+  max-width: 520px;
+  margin: 2.5rem auto 0;
+  text-align: center;
+}
+.contact-info {
+  margin-top: 1.5rem;
+  text-align: left;
+}
+.contact-info h3 {
+  text-align: center;
+}
+.copy-snippet {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.6rem auto;
+  padding: 0.5rem 0.6rem 0.5rem 1rem;
+  border: 2px dashed var(--color-accent);
+  border-radius: 10px;
+  background: var(--color-sand);
+  color: var(--color-ink);
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.promo-box .copy-snippet {
+  display: inline-flex;
+}
+.copy-label {
+  font-weight: bold;
+  min-width: 4.5rem;
+}
+.copy-text {
+  flex: 1;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  word-break: break-word;
+}
+.copy-btn {
+  position: relative;
+  border: none;
+  border-radius: 8px;
+  width: 2.4rem;
+  height: 2.4rem;
+  flex-shrink: 0;
+  cursor: pointer;
+  font-size: 1.2rem;
+  background: var(--color-btn-bg);
+  color: var(--color-btn-text);
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+.copy-btn:hover { transform: scale(1.08); }
+.copy-btn.copied { background: #5C6E4A; color: #fff; }
+.copy-tooltip {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 8px);
+  right: 0;
+  white-space: nowrap;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.8rem;
+  border-radius: 6px;
+  background: #2B2016;
+  color: #fff;
+  pointer-events: none;
+}
+.copy-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 0.9rem;
+  border: 5px solid transparent;
+  border-top-color: #2B2016;
+}
+
+/* Task 9: lazy loading */
+img.lazy {
+  opacity: 0;
+  min-height: 100%;
+  background: linear-gradient(90deg, var(--color-bg-card) 25%, var(--color-sand) 50%, var(--color-bg-card) 75%);
+  background-size: 200% 100%;
+  animation: lazy-shimmer 1.2s ease-in-out infinite;
+}
+.gallery-item:has(img.lazy) {
+  background: linear-gradient(90deg, var(--color-bg-card) 25%, var(--color-sand) 50%, var(--color-bg-card) 75%);
+  background-size: 200% 100%;
+  animation: lazy-shimmer 1.2s ease-in-out infinite;
+}
+@keyframes lazy-shimmer {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
