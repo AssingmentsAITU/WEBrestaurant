@@ -128,6 +128,8 @@ function applyTheme(index) {
     }
 }
 
+
+
 // 1. Check for saved theme on page load and apply it immediately
 const savedThemeIndex = localStorage.getItem("userThemeIndex");
 if (savedThemeIndex !== null) {
@@ -537,25 +539,46 @@ function showToast(message, type, duration) {
 
 $(document).ready(function () {
 
-    // ===== Task 4: Colorful scroll progress bar =====
-    const $bar = $('<div id="scroll-progress"></div>');
-    const $label = $('<div id="scroll-progress-label"></div>');
-    $("body").prepend($bar).prepend($label);
+    // ===== Task 4: Scroll progress ring on a "Back to top" button =====
+    // A round button in the corner; the ring around it fills up as the user
+    // scrolls down the page. Clicking it scrolls smoothly back to the top.
+    const RADIUS = 22;
+    const CIRCUMFERENCE = 2 * Math.PI * RADIUS; // length of the ring's outline
+
+    const $toTop = $(
+        '<button type="button" id="scroll-top-btn" aria-label="Back to top">' +
+            '<svg viewBox="0 0 52 52" aria-hidden="true">' +
+                '<circle class="ring-bg" cx="26" cy="26" r="' + RADIUS + '"></circle>' +
+                '<circle class="ring-fill" cx="26" cy="26" r="' + RADIUS + '"></circle>' +
+            '</svg>' +
+            '<span class="scroll-top-arrow">↑</span>' +
+        '</button>'
+    ).appendTo("body");
+
+    // The ring is drawn as one long dash; shifting it with dashoffset hides part of it
+    const $ring = $toTop.find(".ring-fill").css({
+        strokeDasharray: CIRCUMFERENCE,
+        strokeDashoffset: CIRCUMFERENCE // fully hidden = 0%
+    });
 
     function updateProgress() {
         const scrollTop = $(window).scrollTop();
         const scrollable = $(document).height() - $(window).height();
         const percent = scrollable > 0 ? Math.min(100, (scrollTop / scrollable) * 100) : 0;
 
-        $bar.css("width", percent + "%");
-        $label.text(Math.round(percent) + "% read");
+        // 0% -> offset = full length (empty ring), 100% -> offset = 0 (full ring)
+        $ring.css("stroke-dashoffset", CIRCUMFERENCE * (1 - percent / 100));
+        $toTop.attr("title", Math.round(percent) + "% of the page");
 
-        if (percent > 1) {
-            $label.stop(true).fadeIn(200);
-        } else {
-            $label.stop(true).fadeOut(200);
-        }
+        // Only show the button after the user starts scrolling
+        $toTop.toggleClass("visible", scrollTop > 150);
+        $toTop.toggleClass("complete", percent >= 99.5);
     }
+
+    $toTop.on("click", function () {
+        $("html, body").animate({ scrollTop: 0 }, 600);
+    });
+
     $(window).on("scroll resize", updateProgress);
     updateProgress();
 
