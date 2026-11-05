@@ -766,8 +766,10 @@ $(document).ready(function () {
 
                 if (matches) {
                     total += matches.length;
-                    // .html() + regex: wrap every match in <mark>
-                    $el.html(escapeHtml(original).replace(regex, '<mark class="highlight">$1</mark>'));
+                    // .html() + regex: wrap every match in <mark>.
+                    // The outer <span> keeps the text as one piece inside flex
+                    // containers like the FAQ header buttons.
+                    $el.html("<span>" + escapeHtml(original).replace(regex, '<mark class="highlight">$1</mark>') + "</span>");
 
                     // Open the FAQ answer so the highlighted text is visible
                     const $item = $el.closest(".accordion-item");

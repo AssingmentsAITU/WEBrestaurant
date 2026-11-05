@@ -1,16 +1,6 @@
 /* style.css */
 
 :root {
-  color-scheme: dark;
-  --color-bg: #2B2016;
-  --color-bg-card: #E3D2B8;
-  --color-ink: #2B2016;
-  --color-wood: #3B2A20;
-  --color-cream: #F7F1E6;
-  --color-accent: #A63A2E;
-  --color-jade: #5C6E4A;
-  --color-sand: #FAF7F2;
-
   color-scheme: light;
   --color-bg: #EFE6D6;
   --color-bg-card: #E3D2B8;
@@ -914,45 +904,68 @@ summary:hover {
    Assignment 6 — jQuery features
    ===================================================== */
 
-/* Task 4: scroll progress bar */
-#scroll-progress {
+/* Task 4: scroll progress ring on a "Back to top" button */
+#scroll-top-btn {
   position: fixed;
-  top: 0;
-  left: 0;
-  height: 6px;
-  width: 0;
-  z-index: 3000;
-  background: linear-gradient(90deg, #f6d365, #fda085, #A63A2E, #5C6E4A, #f6d365);
-  background-size: 300% 100%;
-  animation: progress-shimmer 4s linear infinite;
-  border-radius: 0 6px 6px 0;
-  box-shadow: 0 0 10px rgba(253, 160, 133, 0.8);
-  transition: width 0.1s linear;
-}
-#scroll-progress::after {
-  content: "🍋";
-  position: absolute;
-  right: -10px;
-  top: -7px;
-  font-size: 16px;
-}
-#scroll-progress-label {
-  position: fixed;
-  bottom: 20px;
   left: 20px;
-  z-index: 3000;
-  padding: 2px 10px;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: bold;
+  bottom: 20px;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
   background: var(--color-btn-bg);
   color: var(--color-btn-text);
-  opacity: 0.85;
-  display: none;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  z-index: 3000;
+  /* hidden until the user scrolls */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
 }
-@keyframes progress-shimmer {
-  from { background-position: 0% 0; }
-  to   { background-position: 300% 0; }
+#scroll-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+#scroll-top-btn.visible:hover {
+  transform: translateY(-4px);
+}
+#scroll-top-btn svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg); /* start the ring at 12 o'clock */
+}
+#scroll-top-btn .ring-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.18);
+  stroke-width: 4;
+}
+#scroll-top-btn .ring-fill {
+  fill: none;
+  stroke: #f6d365;
+  stroke-width: 4;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.1s linear, stroke 0.3s ease;
+}
+#scroll-top-btn.complete .ring-fill {
+  stroke: #6fcf73; /* turns green at the bottom of the page */
+}
+#scroll-top-btn .scroll-top-arrow {
+  position: relative;
+  font-size: 1.4rem;
+  font-weight: bold;
+  line-height: 1;
+}
+body.dark-mode #scroll-top-btn .ring-bg {
+  stroke: rgba(43, 32, 22, 0.25);
+}
+body.dark-mode #scroll-top-btn .ring-fill {
+  stroke: #A63A2E;
 }
 
 /* Tasks 1-2: menu search + autocomplete */
