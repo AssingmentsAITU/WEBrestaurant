@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create a Yuzu Kitchen account to keep your reservations, favourite dishes and saved recipes in one place.">
+    <title>Sign Up · Yuzu Kitchen</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+
+    <!-- Fonts and icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400&family=BJCree:wght@400;600;700&family=Nothing+You+Could+Do&family=Rampart+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Applies the saved light / dark theme before the page is drawn -->
+    <script src="js/theme.js"></script>
+    <!-- jQuery (used by js/script.js) -->
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header id="main-header">
+        <a href="index.html" class="brand" aria-label="Yuzu Kitchen, home page">
+            <span class="brand-kanji" aria-hidden="true">柚子</span>
+            <span class="brand-name">Yuzu Kitchen</span>
+        </a>
+
+        <nav class="main-nav" id="main-nav" aria-label="Main">
+            <a href="index.html">Main</a>
+            <a href="about.html">About Us</a>
+            <a href="dishes.html">Dishes</a>
+            <a href="drinks.html">Drinks</a>
+            <a href="recipes.html">Recipes</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html">Contact</a>
+            <!-- Changes to the user's name after logging in (js/script.js) -->
+            <a href="login.html" class="nav-account" id="nav-account"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i> Log In</a>
+        </nav>
+
+        <button type="button" class="theme-switch" id="theme-switch" role="switch" aria-checked="false" aria-label="Dark mode">
+            <span class="theme-switch-track"><span class="theme-switch-thumb"><i class="fa-solid fa-sun" aria-hidden="true"></i></span></span>
+        </button>
+
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <main id="main" class="auth-main">
+        <div class="auth-visual auth-visual--signup">
+            <div>
+                <h2>Join the Yuzu Club</h2>
+                <ul>
+                    <li><i class="fa-solid fa-calendar-check" aria-hidden="true"></i>All your reservations in one place</li>
+                    <li><i class="fa-solid fa-heart" aria-hidden="true"></i>Save favourite dishes and drinks</li>
+                    <li><i class="fa-solid fa-book-open" aria-hidden="true"></i>Bookmark recipes to cook at home</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="auth-panel">
+            <div class="auth-card">
+                <p class="eyebrow">Create an account</p>
+                <h1>Sign up</h1>
+                <p class="form-intro">It takes less than a minute.</p>
+
+                <div class="form-alert" id="signup-alert" role="alert"></div>
+
+                <form id="signup-form" action="#" novalidate>
+                    <div class="form-group">
+                        <label for="signup-name">Full name</label>
+                        <input type="text" id="signup-name" name="name" class="form-control" autocomplete="name" placeholder="e.g. Aigerim Sultanova" data-validate="required name">
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">Email</label>
+                        <input type="text" id="signup-email" name="email" class="form-control" inputmode="email" autocomplete="email" placeholder="name@example.com" data-validate="required email">
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-phone">Phone number</label>
+                        <input type="tel" id="signup-phone" name="phone" class="form-control" autocomplete="tel" placeholder="+7 701 234 56 78" data-validate="required phone" aria-describedby="signup-phone-hint">
+                        <p class="field-hint" id="signup-phone-hint">Kazakhstan format: +7 or 8, then 10 digits.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <div class="input-with-button">
+                            <input type="password" id="signup-password" name="password" class="form-control password-input" autocomplete="new-password" data-validate="required password" aria-describedby="signup-password-rules">
+                            <button type="button" class="toggle-password" aria-label="Show password"><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
+                        </div>
+                        <div class="strength-meter" aria-hidden="true"><span></span></div>
+                        <ul class="password-rules" id="signup-password-rules" data-for="signup-password"></ul>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-confirm">Confirm password</label>
+                        <div class="input-with-button">
+                            <input type="password" id="signup-confirm" name="confirm" class="form-control password-input" autocomplete="new-password" data-validate="required matches" data-matches="signup-password" data-required-message="Please type your password again.">
+                            <button type="button" class="toggle-password" aria-label="Show password"><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-user-plus" aria-hidden="true"></i> Create account</button>
+                </form>
+
+                <p class="auth-switch">Already have an account? <a href="login.html">Log in</a></p>
+                <p class="demo-note"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Demo site: your account is saved only in this browser (localStorage).</p>
+            </div>
+        </div>
+    </main>
+    <footer id="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <p class="footer-logo"><span class="brand-kanji" aria-hidden="true">柚子</span> <span class="brand-name">Yuzu Kitchen</span></p>
+                <p>Coastal Japanese cooking in the heart of Astana: fresh seafood, an open kitchen and no rush at the table.</p>
+            </div>
+            <div>
+                <h2 class="footer-heading">Visit us</h2>
+                <p><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Astana, Mangilik El Ave. 55</p>
+                <p><i class="fa-solid fa-phone" aria-hidden="true"></i><a href="tel:+77172552513">+7 (717) 255-25-13</a></p>
+                <p><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="mailto:hello@yuzukitchen.kz">hello@yuzukitchen.kz</a></p>
+            </div>
+            <div>
+                <h2 class="footer-heading">Opening hours</h2>
+                <p>Mon – Thu: 10:00 – 23:00</p>
+                <p>Fri: 10:00 – 00:00</p>
+                <p>Sat: 11:00 – 00:00</p>
+                <p>Sun: 11:00 – 22:00</p>
+            </div>
+            <div>
+                <h2 class="footer-heading">Explore</h2>
+                <ul class="footer-links">
+                    <li><a href="dishes.html">Our menu</a></li>
+                    <li><a href="recipes.html">Cook at home</a></li>
+                    <li><a href="contact.html">Book a table</a></li>
+                    <li><a href="profile.html">My profile</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="footer-bottom">© 2026 Yuzu Kitchen · Made by Alizhan Rymkhan, Adilbek Shangerey and Yerassyl Gabbas</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

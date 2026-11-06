@@ -3,189 +3,290 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drinks - Yuzu Kitchen</title>
+    <meta name="description" content="The Yuzu Kitchen drinks list: Japanese beer, sake, wine, cocktails, tea and fresh juice.">
+    <title>Drinks · Yuzu Kitchen</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+
+    <!-- Fonts and icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=BJCree:wght@400;500;600;700&family=Nothing+You+Could+Do&family=Rampart+One&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400&family=BJCree:wght@400;600;700&family=Nothing+You+Could+Do&family=Rampart+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Assignment 6: jQuery from CDN -->
+    <!-- Applies the saved light / dark theme before the page is drawn -->
+    <script src="js/theme.js"></script>
+    <!-- jQuery (used by js/script.js) -->
     <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
     <header id="main-header">
-        <div>
-        <h1 id="kanji">柚子</h1>
-        <h1 id="yuzu">Yuzu Kitchen</h1>
-        </div>
-        <nav>
+        <a href="index.html" class="brand" aria-label="Yuzu Kitchen, home page">
+            <span class="brand-kanji" aria-hidden="true">柚子</span>
+            <span class="brand-name">Yuzu Kitchen</span>
+        </a>
+
+        <nav class="main-nav" id="main-nav" aria-label="Main">
             <a href="index.html">Main</a>
             <a href="about.html">About Us</a>
-            <a href="Dishes.html">Dishes</a>
-            <a href="Drinks.html">Drinks</a>
+            <a href="dishes.html">Dishes</a>
+            <a href="drinks.html">Drinks</a>
+            <a href="recipes.html">Recipes</a>
             <a href="gallery.html">Gallery</a>
             <a href="contact.html">Contact</a>
-            <button id="bg-toggle-btn" class="theme-btn">Change Theme</button>
+            <!-- Changes to the user's name after logging in (js/script.js) -->
+            <a href="login.html" class="nav-account" id="nav-account"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i> Log In</a>
         </nav>
+
+        <button type="button" class="theme-switch" id="theme-switch" role="switch" aria-checked="false" aria-label="Dark mode">
+            <span class="theme-switch-track"><span class="theme-switch-thumb"><i class="fa-solid fa-sun" aria-hidden="true"></i></span></span>
+        </button>
+
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+            <span></span><span></span><span></span>
+        </button>
     </header>
-    
-<main>
-    <h1 class="DishesDrinks-title">Drinks</h1>
-    <!-- Assignment 6, Tasks 1-2: live filter + autocomplete -->
-    <div class="menu-search">
-        <input type="text" id="menu-search-input" placeholder="Search the menu, e.g. salmon, tea..." autocomplete="off" aria-label="Search the menu">
-        <ul id="search-suggestions" class="search-suggestions"></ul>
-        <p id="search-count" class="search-count"></p>
-    </div>
-    <details>
-        <summary>Beer</summary>
-    <div class="Menumenu">
-    <span>Asahi Super Dry</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmxRgk8MNxeOnXn6ljEpC3-ygLNs45aCLGLdkQlzCvlw&s=10" alt="Asahi Super Dry" width="150">
 
-    </div>
-    <div class="Menumenu">
-    <span>Sapporo Premium</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrxjULlz-rY3FZMLacqf1_t_-3QRJ9e9inhA_5zWQVKA&s=10" alt="Sapporo Premium" width="150">
+    <main id="main">
+        <div class="container">
+            <section class="page-intro">
+                <p class="eyebrow">Our menu</p>
+                <h1 class="page-title">Drinks</h1>
+                <p class="section-lead">Japanese beer and sake, wine, cocktails, loose-leaf tea and fresh juice.</p>
+            </section>
 
-    </div>
-    <div class="Menumenu">
-    <span>Kirin Ichiban</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvWljwEmIYH0IbbBZxnt-8QCuj3x3sPz0VFOD1-CN4dQ&s=10" alt="Kirin Ichiban" width="150">
+            <!-- Live filter + autocomplete + saved searches and favourites -->
+            <div class="search-box">
+                <label for="menu-search-input" class="visually-hidden">Search the menu</label>
+                <i class="fa-solid fa-magnifying-glass search-icon" aria-hidden="true"></i>
+                <input type="text" id="menu-search-input" class="search-input" data-menu="drinks" placeholder="Search drinks, e.g. sake, tea..." autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="search-suggestions">
+                <ul id="search-suggestions" class="search-suggestions" role="listbox"></ul>
+                <p id="search-count" class="search-count" aria-live="polite"></p>
+            </div>
+            <div class="menu-tools">
+                <button type="button" class="chip" id="favorites-filter" aria-pressed="false"><i class="fa-solid fa-heart" aria-hidden="true"></i> Favourites only (<span id="favorites-count">0</span>)</button>
+                <div class="recent-searches" id="recent-searches"></div>
+            </div>
 
-    </div>
-    <div class="Menumenu">
-    <span>Yebisu</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYPMP77FUCvkeTjrGquAc2W3u8utwhf0q__Cu8muM15Q&s" alt="Yebisu" width="150">
+            <div class="menu-categories">
+            <details class="menu-category">
+                <summary><i class="fa-solid fa-beer-mug-empty" aria-hidden="true"></i>Beer</summary>
+                <div class="menu-list">
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmxRgk8MNxeOnXn6ljEpC3-ygLNs45aCLGLdkQlzCvlw&amp;s=10" alt="Asahi Super Dry" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Asahi Super Dry</h3>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrxjULlz-rY3FZMLacqf1_t_-3QRJ9e9inhA_5zWQVKA&amp;s=10" alt="Sapporo Premium" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Sapporo Premium</h3>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvWljwEmIYH0IbbBZxnt-8QCuj3x3sPz0VFOD1-CN4dQ&amp;s=10" alt="Kirin Ichiban" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Kirin Ichiban</h3>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYPMP77FUCvkeTjrGquAc2W3u8utwhf0q__Cu8muM15Q&amp;s" alt="Yebisu" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Yebisu</h3>
+                        </div>
+                    </div>
+                </div>
+            </details>
 
-    </div>
-    </details>
+            <details class="menu-category">
+                <summary><i class="fa-solid fa-wine-bottle" aria-hidden="true"></i>Sake</summary>
+                <div class="menu-list">
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvy1y5qqAK7fmcnLqs-LoSYblmKsASqZLYdfrjAoRgnQ&amp;s=10" alt="Dassai 23" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Dassai 23</h3>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSR4EfMaDemYbp3DdPuX8zd3rApSwLyy9k8zTHtcXVw8g&amp;s" alt="Hakkaisan" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Hakkaisan</h3>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9cDji72X1wSQCWptxy7vbBGp6NwiHQTlMiktS98Cn7A&amp;s=10" alt="Kikusui" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Kikusui</h3>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://theliquorstore.com/cdn/shop/products/Ozeki-Sake-Premium-Junmai_600x.jpg?v=1639637901" alt="Ozeki" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Ozeki</h3>
+                        </div>
+                    </div>
+                </div>
+            </details>
 
-    <details>
-        <summary>Sake</summary>
-    <div class="Menumenu">
-    <span>Dassai 23</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvy1y5qqAK7fmcnLqs-LoSYblmKsASqZLYdfrjAoRgnQ&s=10" alt="Dassai 23" width="150">
+            <details class="menu-category">
+                <summary><i class="fa-solid fa-wine-glass" aria-hidden="true"></i>Wine</summary>
+                <div class="menu-list">
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCc1unorH-9z5QRPyYtb9PD1EenA3JC9lQ3XlyrhH66g&amp;s=10" alt="Chardonnay" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Chardonnay</h3>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSka3x-PkvG-vwwXt1wnLIw7Vrk-lSJWxqok_Q5Ye2BZA&amp;s=10" alt="Merlot" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Merlot</h3>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-wKRZ_lAUUGoWySq3ojZrHVyzmtcJPZ2wZPJPs7O94w&amp;s=10" alt="Cabernet Sauvignon" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Cabernet Sauvignon</h3>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdUpmGVBWYDIqELwGaemSbP5QCUCcsRMF0zmX2NQS5-w&amp;s=10" alt="Pinot Noir" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Pinot Noir</h3>
+                        </div>
+                    </div>
+                </div>
+            </details>
 
-    </div>
-    <div class="Menumenu">
-    <span>Hakkaisan</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSR4EfMaDemYbp3DdPuX8zd3rApSwLyy9k8zTHtcXVw8g&s" alt="Hakkaisan" width="150">
+            <details class="menu-category">
+                <summary><i class="fa-solid fa-martini-glass-citrus" aria-hidden="true"></i>Cocktails</summary>
+                <div class="menu-list">
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_wcdMd_fEFSDkF3WrYjOzCuyx24QmQ2DCDj0ZkHAgyg&amp;s=10" alt="Mojito" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Mojito</h3>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPo5dyTSUJ8gqLBX4f_9zYAaiAteo39xG5Y1aXVeneeA&amp;s=10" alt="Margarita" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Margarita</h3>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYLN03LFtAFnHb0e7_76M_2oHcLGCG6AwAYyN5N7NEtw&amp;s=10" alt="Cosmopolitan" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Cosmopolitan</h3>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYYmA20y-GJ5tvWu6I2dt-6QxYj4ZMI4XDvOpg-fdnUg&amp;s=10" alt="Mai Tai" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Mai Tai</h3>
+                        </div>
+                    </div>
+                </div>
+            </details>
 
-    </div>
-    <div class="Menumenu">
-    <span>Kikusui</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9cDji72X1wSQCWptxy7vbBGp6NwiHQTlMiktS98Cn7A&s=10" alt="Kikusui" width="150">
-    </div>
-    <div class="Menumenu">
-    <span>Ozeki</span>
-    <img src="https://theliquorstore.com/cdn/shop/products/Ozeki-Sake-Premium-Junmai_600x.jpg?v=1639637901" alt="Ozeki" width="150">
+            <details class="menu-category">
+                <summary><i class="fa-solid fa-mug-hot" aria-hidden="true"></i>Tea</summary>
+                <div class="menu-list">
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHU77fJKEjWCjydKlQvFZoOBuyHpsVJEVXfANKocE4rg&amp;s=10" alt="Green Tea" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Green Tea</h3>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYwXIXSV5vuOc_oyXwmJz1h4D2mCYZjd9KIOai51PajQ&amp;s=10" alt="Oolong Tea" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Oolong Tea</h3>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMQNGkPuCn_sBxezVjnFANLTU48FGAliVPV2F5IUdIgQ&amp;s=10" alt="Jasmine Tea" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Jasmine Tea</h3>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8GOi7zVpMjXAN2d8f82RUpoQ09FWNccAWVpmbYMJiDA&amp;s=10" alt="Chamomile Tea" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Chamomile Tea</h3>
+                        </div>
+                    </div>
+                </div>
+            </details>
 
-    </div>
-    </details>
-
-    <details>
-        <summary>Wine</summary>
-    <div class="Menumenu">
-    <span>Chardonnay</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCc1unorH-9z5QRPyYtb9PD1EenA3JC9lQ3XlyrhH66g&s=10" alt="Chardonnay" width="150">
-
-    </div>
-    <div class="Menumenu">
-    <span>Merlot</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSka3x-PkvG-vwwXt1wnLIw7Vrk-lSJWxqok_Q5Ye2BZA&s=10" alt="Merlot" width="150">
-
-    </div>
-    <div class="Menumenu">
-    <span>Cabernet Sauvignon</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-wKRZ_lAUUGoWySq3ojZrHVyzmtcJPZ2wZPJPs7O94w&s=10" alt="Cabernet Sauvignon" width="150">
-
-    </div>
-    <div class="Menumenu">
-    <span>Pinot Noir</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdUpmGVBWYDIqELwGaemSbP5QCUCcsRMF0zmX2NQS5-w&s=10" alt="Pinot Noir" width="150">
-
-    </div>
-    </details>
-
-    <details>
-        <summary>Cocktails</summary>
-    <div class="Menumenu">
-    <span>Mojito</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_wcdMd_fEFSDkF3WrYjOzCuyx24QmQ2DCDj0ZkHAgyg&s=10" alt="Mojito" width="150">
-
-    </div>
-    <div class="Menumenu">
-    <span>Margarita</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPo5dyTSUJ8gqLBX4f_9zYAaiAteo39xG5Y1aXVeneeA&s=10" alt="Margarita" width="150">
-
-    </div>
-    <div class="Menumenu">
-    <span>Cosmopolitan</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYLN03LFtAFnHb0e7_76M_2oHcLGCG6AwAYyN5N7NEtw&s=10" alt="Cosmopolitan" width="150">
-
-    </div>
-    <div class="Menumenu">
-    <span>Mai Tai</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYYmA20y-GJ5tvWu6I2dt-6QxYj4ZMI4XDvOpg-fdnUg&s=10" alt="Mai Tai" width="150">
-
-    </div>
-    </details>
-    <details>
-        <summary>Tea</summary>
-    <div class="Menumenu">
-    <span>Green Tea</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHU77fJKEjWCjydKlQvFZoOBuyHpsVJEVXfANKocE4rg&s=10" alt="Green Tea" width="150">
-
-    </div>
-    <div class="Menumenu">
-    <span>Oolong Tea</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYwXIXSV5vuOc_oyXwmJz1h4D2mCYZjd9KIOai51PajQ&s=10" alt="Oolong Tea" width="150">
-
-    </div>
-    <div class="Menumenu">
-    <span>Jasmine Tea</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMQNGkPuCn_sBxezVjnFANLTU48FGAliVPV2F5IUdIgQ&s=10" alt="Jasmine Tea" width="150">
-
-    </div>
-    <div class="Menumenu">
-    <span>Chamomile Tea</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8GOi7zVpMjXAN2d8f82RUpoQ09FWNccAWVpmbYMJiDA&s=10" alt="Chamomile Tea" width="150">
-
-    </div>
-    </details>
-    
-    <details>
-        <summary>Juice</summary>
-    <div class="Menumenu">
-    <span>Orange Juice</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5thhku4OSSUZlJhtj-HQ8VlyLQ2dv6XaGpDkyVzGILw&s=10" alt="Orange Juice" width="150">
-
-    </div>
-    <div class="Menumenu">
-    <span>Apple Juice</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJAG-Xf_hr1ahsu4XduzSAZvtgMsm2thQUwAwWncgKCg&s=10" alt="Apple Juice" width="150">
-    
-    </div>
-    <div class="Menumenu">
-    <span>Cranberry Juice</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR80T3YhpYkQWNHwrgWc7w3NTOffaMSYkxoqDRZsYhhhw&s=10" alt="Cranberry Juice" width="150">
-
-    </div>
-    <div class="Menumenu">
-    <span>Pineapple Juice</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR55DFwnlTdBAika6v-NhdKWk4tr1T9PgsY98QON7Ukww&s=10" alt="Pineapple Juice" width="150">
-    
-    </div>
-    </details>
- </main>   
+            <details class="menu-category">
+                <summary><i class="fa-solid fa-lemon" aria-hidden="true"></i>Juice</summary>
+                <div class="menu-list">
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5thhku4OSSUZlJhtj-HQ8VlyLQ2dv6XaGpDkyVzGILw&amp;s=10" alt="Orange Juice" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Orange Juice</h3>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJAG-Xf_hr1ahsu4XduzSAZvtgMsm2thQUwAwWncgKCg&amp;s=10" alt="Apple Juice" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Apple Juice</h3>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR80T3YhpYkQWNHwrgWc7w3NTOffaMSYkxoqDRZsYhhhw&amp;s=10" alt="Cranberry Juice" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Cranberry Juice</h3>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR55DFwnlTdBAika6v-NhdKWk4tr1T9PgsY98QON7Ukww&amp;s=10" alt="Pineapple Juice" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Pineapple Juice</h3>
+                        </div>
+                    </div>
+                </div>
+            </details>
+                <p class="menu-empty" id="menu-empty">Nothing to show yet. Try another word, or tap <i class="fa-regular fa-heart" aria-hidden="true"></i> on a drink to save it as a favourite.</p>
+            </div>
+        </div>
+    </main>
     <footer id="site-footer">
-    <div class="container">
-        <p>Team members: Alizhan Rymkhan, Adilbek Shangerey, Yerassyl Gabbas</p>
-    </div> 
-    </footer> 
-    <script src="script.js"></script>
+        <div class="container footer-grid">
+            <div>
+                <p class="footer-logo"><span class="brand-kanji" aria-hidden="true">柚子</span> <span class="brand-name">Yuzu Kitchen</span></p>
+                <p>Coastal Japanese cooking in the heart of Astana: fresh seafood, an open kitchen and no rush at the table.</p>
+            </div>
+            <div>
+                <h2 class="footer-heading">Visit us</h2>
+                <p><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Astana, Mangilik El Ave. 55</p>
+                <p><i class="fa-solid fa-phone" aria-hidden="true"></i><a href="tel:+77172552513">+7 (717) 255-25-13</a></p>
+                <p><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="mailto:hello@yuzukitchen.kz">hello@yuzukitchen.kz</a></p>
+            </div>
+            <div>
+                <h2 class="footer-heading">Opening hours</h2>
+                <p>Mon – Thu: 10:00 – 23:00</p>
+                <p>Fri: 10:00 – 00:00</p>
+                <p>Sat: 11:00 – 00:00</p>
+                <p>Sun: 11:00 – 22:00</p>
+            </div>
+            <div>
+                <h2 class="footer-heading">Explore</h2>
+                <ul class="footer-links">
+                    <li><a href="dishes.html">Our menu</a></li>
+                    <li><a href="recipes.html">Cook at home</a></li>
+                    <li><a href="contact.html">Book a table</a></li>
+                    <li><a href="profile.html">My profile</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="footer-bottom">© 2026 Yuzu Kitchen · Made by Alizhan Rymkhan, Adilbek Shangerey and Yerassyl Gabbas</p>
+    </footer>
+
+    <script src="js/script.js"></script>
 </body>
 </html>

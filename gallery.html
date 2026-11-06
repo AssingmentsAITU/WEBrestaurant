@@ -1,144 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gallery — Yuzu Kitchen</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400;1,700&family=BJCree:wght@400;500;600;700&family=Nothing+You+Could+Do&family=Rampart+One&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Photos from Yuzu Kitchen: the wok station, the sushi counter, the bar and the dining hall.">
+    <title>Gallery · Yuzu Kitchen</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
 
-  
-  <link rel="stylesheet" href="css/style.css">
+    <!-- Fonts and icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400&family=BJCree:wght@400;600;700&family=Nothing+You+Could+Do&family=Rampart+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-  <!-- Assignment 6: jQuery from CDN -->
-  <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Applies the saved light / dark theme before the page is drawn -->
+    <script src="js/theme.js"></script>
+    <!-- jQuery (used by js/script.js) -->
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
     <header id="main-header">
-        <div>
-        <h1 id="kanji">柚子</h1>
-        <h1 id="yuzu">Yuzu Kitchen</h1>
-        </div>
-        <nav>
+        <a href="index.html" class="brand" aria-label="Yuzu Kitchen, home page">
+            <span class="brand-kanji" aria-hidden="true">柚子</span>
+            <span class="brand-name">Yuzu Kitchen</span>
+        </a>
+
+        <nav class="main-nav" id="main-nav" aria-label="Main">
             <a href="index.html">Main</a>
             <a href="about.html">About Us</a>
-            <a href="Dishes.html">Dishes</a>
-            <a href="Drinks.html">Drinks</a>
+            <a href="dishes.html">Dishes</a>
+            <a href="drinks.html">Drinks</a>
+            <a href="recipes.html">Recipes</a>
             <a href="gallery.html">Gallery</a>
             <a href="contact.html">Contact</a>
-            <button id="bg-toggle-btn" class="theme-btn">Change Theme</button>
+            <!-- Changes to the user's name after logging in (js/script.js) -->
+            <a href="login.html" class="nav-account" id="nav-account"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i> Log In</a>
         </nav>
+
+        <button type="button" class="theme-switch" id="theme-switch" role="switch" aria-checked="false" aria-label="Dark mode">
+            <span class="theme-switch-track"><span class="theme-switch-thumb"><i class="fa-solid fa-sun" aria-hidden="true"></i></span></span>
+        </button>
+
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+            <span></span><span></span><span></span>
+        </button>
     </header>
-    
-  <main>
 
-    <section class="section">
+    <main id="main">
         <div class="container">
-            <p class="eyebrow"> A look inside </p>
-            <h1>The kitchen, the counter, the table</h1>
-
-            <p>
-                A few moments from regular night from Yuzu Kitchen - the wok
-                station, the sushi counter, and the hall.
-            </p>
+            <section class="page-intro">
+                <p class="eyebrow">A look inside</p>
+                <h1 class="page-title">Gallery</h1>
+                <p class="section-lead">A few moments from a regular night at Yuzu Kitchen: the wok station, the sushi counter and the hall.</p>
+            </section>
         </div>
-    </section>
 
-    <section class="section section--tinted">
-  <div class="container gallery-stack">
+        <section class="section">
+            <!-- Images load only when they scroll into view (data-src) -->
+            <div class="container gallery-stack">
+                <figure class="gallery-item" tabindex="0">
+                    <img class="lazy" data-src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/33/31/a4/da/888-restaurant-open-kitchen.jpg?w=1200&amp;h=1200&amp;s=1" alt="The open wok station with chefs at work">
+                    <figcaption class="gallery-caption"><p>The wok station: the loudest, busiest corner of the kitchen.</p></figcaption>
+                </figure>
+                <figure class="gallery-item" tabindex="0">
+                    <img class="lazy" data-src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0b/ca/d3/7d/wasabi.jpg?w=900&amp;h=500&amp;s=1" alt="Sushi rolls being prepared at the counter">
+                    <figcaption class="gallery-caption"><p>Fresh rolls, cut to order, at the sushi counter.</p></figcaption>
+                </figure>
+                <figure class="gallery-item" tabindex="0">
+                    <img class="lazy" data-src="https://platform.dc.eater.com/wp-content/uploads/sites/9/chorus/uploads/chorus_asset/file/23236343/D85_0431_HDR.jpeg?quality=90&amp;strip=all&amp;crop=0.01953125,0,99.9609375,100" alt="The dining hall with warm lighting">
+                    <figcaption class="gallery-caption"><p>Where most evenings happen: simple tables, warm light, no rush.</p></figcaption>
+                </figure>
+                <figure class="gallery-item" tabindex="0">
+                    <img class="lazy" data-src="https://cdn.broadsheet.com.au/cache/38/d9/38d9dbc7490086ecfcff37d73f90228b.jpg" alt="A dessert plate with matcha garnish">
+                    <figcaption class="gallery-caption"><p>Matcha dessert, plated right before it leaves the pass.</p></figcaption>
+                </figure>
+                <figure class="gallery-item" tabindex="0">
+                    <img class="lazy" data-src="https://images.unsplash.com/photo-1768142984100-ea6444b691f5?fm=jpg&amp;q=60&amp;w=1200&amp;auto=format&amp;fit=crop" alt="The restaurant entrance at night">
+                    <figcaption class="gallery-caption"><p>The entrance on a quiet weeknight. The lanterns are usually the first thing people notice.</p></figcaption>
+                </figure>
+                <figure class="gallery-item" tabindex="0">
+                    <img class="lazy" data-src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&amp;fit=crop&amp;w=1200&amp;q=70" alt="A bowl of ramen with egg and vegetables from above">
+                    <figcaption class="gallery-caption"><p>A bowl that's been on the menu since day one.</p></figcaption>
+                </figure>
+                <figure class="gallery-item" tabindex="0">
+                    <img class="lazy" data-src="https://static01.nyt.com/images/2023/10/11/multimedia/11wte-japanese-bars1-cfpq/05wte-japanese-bars1-cfpq-superJumbo.jpg" alt="The Japanese cocktail bar">
+                    <figcaption class="gallery-caption"><p>The bar: sake, cocktails and the occasional debate over which one goes with wasabi.</p></figcaption>
+                </figure>
+                <figure class="gallery-item" tabindex="0">
+                    <img class="lazy" data-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ99Q1qTorz4WFEoO_o0-nEqb7RUigpF8Cc5VtVIjpYHKR0wiM1jYq-1A_8&amp;s=10" alt="A chef's hands cutting sushi, close up">
+                    <figcaption class="gallery-caption"><p>The kind of detail work that never makes it onto the menu.</p></figcaption>
+                </figure>
+                <figure class="gallery-item" tabindex="0">
+                    <img class="lazy" data-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1KFDitI-UQ9jQE6YGe2ng6HW4W5Gn-4Fiz7GIVtI2bxyNedDZPzAkNBs&amp;s=10" alt="Lighting details in the restaurant interior">
+                    <figcaption class="gallery-caption"><p>Small details that regulars notice before the food even arrives.</p></figcaption>
+                </figure>
+            </div>
+        </section>
 
-    <figure class="gallery-item">
-      <img class="lazy" data-src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/33/31/a4/da/888-restaurant-open-kitchen.jpg?w=1200&h=1200&s=1" alt="Illustration of the open wok station with rising steam">
-      <div class="gallery-caption">
-        <p>The wok station — the loudest, busiest corner of the kitchen.</p>
-      </div>
-    </figure>
-
-    <figure class="gallery-item">
-      <img class="lazy" data-src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0b/ca/d3/7d/wasabi.jpg?w=900&h=500&s=1" alt="Illustration of the sushi counter with rolls in progress">
-      <div class="gallery-caption">
-        <p>Fresh rolls, cut to order, at the sushi counter.</p>
-      </div>
-    </figure>
-
-    <figure class="gallery-item">
-      <img class="lazy" data-src="https://platform.dc.eater.com/wp-content/uploads/sites/9/chorus/uploads/chorus_asset/file/23236343/D85_0431_HDR.jpeg?quality=90&strip=all&crop=0.01953125,0,99.9609375,100" alt="Illustration of the hall">
-      <div class="gallery-caption">
-        <p>Where most evenings happen — simple tables, warm light, no rush.</p>
-      </div>
-    </figure>
-
-    <figure class="gallery-item">
-      <img class="lazy" data-src="https://cdn.broadsheet.com.au/cache/38/d9/38d9dbc7490086ecfcff37d73f90228b.jpg" alt="Illustration of a dessert plate with matcha garnish">
-      <div class="gallery-caption">
-        <p>Matcha dessert, plated right before it leaves the pass.</p>
-      </div>
-    </figure>
-
-    
-    <figure class="gallery-item">
-      <img class="lazy" data-src="https://images.unsplash.com/photo-1768142984100-ea6444b691f5?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="our restaurant entrance exterior night">
-      <div class="gallery-caption">
-        <p>The entrance on a quiet weeknight — the lanterns are usually the first thing people notice.</p>
-      </div>
-    </figure>
-
-    <figure class="gallery-item">
-      <img class="lazy" data-src="https://static.vecteezy.com/system/resources/previews/077/185/359/large_2x/close-up-overhead-shot-of-a-japanese-ramen-bowl-with-noodles-boiled-eggs-vegetables-and-chopsticks-ready-to-eat-photo.jpg" alt="bowl close up overhead">
-      <div class="gallery-caption">
-        <p>A bowl that's been on the menu since day one.</p>
-      </div>
-    </figure>
-
-    <figure class="gallery-item">
-      <img class="lazy" data-src="https://static01.nyt.com/images/2023/10/11/multimedia/11wte-japanese-bars1-cfpq/05wte-japanese-bars1-cfpq-superJumbo.jpg" alt="japanese cocktail bar restaurant">
-      <div class="gallery-caption">
-        <p>The bar — sake, cocktails, and the occasional debate over which one pairs with wasabi.</p>
-      </div>
-    </figure>
-
-    <figure class="gallery-item">
-      <img class="lazy" data-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ99Q1qTorz4WFEoO_o0-nEqb7RUigpF8Cc5VtVIjpYHKR0wiM1jYq-1A_8&s=10" alt="chef hands cutting sushi close up">
-      <div class="gallery-caption">
-        <p>The kind of detail work that never makes it onto the menu description.</p>
-      </div>
-    </figure>
-
-    <figure class="gallery-item">
-      <img class="lazy" data-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1KFDitI-UQ9jQE6YGe2ng6HW4W5Gn-4Fiz7GIVtI2bxyNedDZPzAkNBs&s=10" alt="japanese restaurant interior lighting detail">
-      <div class="gallery-caption">
-        <p>Small details — the ones regulars notice before the food even arrives.</p>
-      </div>
-    </figure>
-
-  </div>
-</section>
-
-    <section class="section">
-      <div class="container grid grid--2">
-        
-        <div>
-          <h2>How a visit usually goes</h2>
-          <ol>
-            <li>Grab a seat at the counter or a table — no reservation needed before 6pm.</li>
-            <li>Order small plates to share, or a full bowl to yourself.</li>
-            <li>Ask the sushi counter what's freshest that day — it changes often.</li>
-            <li>Save room for the matcha dessert. We mean it.</li>
-          </ol>
+        <section class="section section--surface">
+            <div class="container container--narrow">
+                <h2 class="section-title">How a visit usually goes</h2>
+                <ol class="visit-steps">
+                    <li>Grab a seat at the counter or a table. No reservation is needed before 6 pm.</li>
+                    <li>Order small plates to share, or a full bowl to yourself.</li>
+                    <li>Ask the sushi counter what's freshest that day. It changes often.</li>
+                    <li>Save room for the matcha dessert. We mean it.</li>
+                </ol>
+                <p class="section-cta"><a href="contact.html" class="btn btn-primary"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i> Book your visit</a></p>
+            </div>
+        </section>
+    </main>
+    <footer id="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <p class="footer-logo"><span class="brand-kanji" aria-hidden="true">柚子</span> <span class="brand-name">Yuzu Kitchen</span></p>
+                <p>Coastal Japanese cooking in the heart of Astana: fresh seafood, an open kitchen and no rush at the table.</p>
+            </div>
+            <div>
+                <h2 class="footer-heading">Visit us</h2>
+                <p><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Astana, Mangilik El Ave. 55</p>
+                <p><i class="fa-solid fa-phone" aria-hidden="true"></i><a href="tel:+77172552513">+7 (717) 255-25-13</a></p>
+                <p><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="mailto:hello@yuzukitchen.kz">hello@yuzukitchen.kz</a></p>
+            </div>
+            <div>
+                <h2 class="footer-heading">Opening hours</h2>
+                <p>Mon – Thu: 10:00 – 23:00</p>
+                <p>Fri: 10:00 – 00:00</p>
+                <p>Sat: 11:00 – 00:00</p>
+                <p>Sun: 11:00 – 22:00</p>
+            </div>
+            <div>
+                <h2 class="footer-heading">Explore</h2>
+                <ul class="footer-links">
+                    <li><a href="dishes.html">Our menu</a></li>
+                    <li><a href="recipes.html">Cook at home</a></li>
+                    <li><a href="contact.html">Book a table</a></li>
+                    <li><a href="profile.html">My profile</a></li>
+                </ul>
+            </div>
         </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer id="site-footer">
-    <div class="container">
-        <p>Team members: Alizhan Rymkhan, Adilbek Shangerey, Yerassyl Gabbas</p>
-    </div> 
+        <p class="footer-bottom">© 2026 Yuzu Kitchen · Made by Alizhan Rymkhan, Adilbek Shangerey and Yerassyl Gabbas</p>
     </footer>
-    <script src="script.js"></script> 
+
+    <script src="js/script.js"></script>
 </body>
 </html>

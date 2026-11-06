@@ -3,122 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main - Yuzu Kitchen</title>
+    <meta name="description" content="Yuzu Kitchen is a coastal Japanese restaurant in Astana. Browse the menu, book a table online and cook our favourite Asian recipes at home.">
+    <title>Coastal Japanese Restaurant in Astana · Yuzu Kitchen</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
 
-    <!-- fonts -->
+    <!-- Fonts and icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400;1,700&family=BJCree:wght@400;500;600;700&family=Nothing+You+Could+Do&family=Rampart+One&display=swap" rel="stylesheet">
-
-
-
+    <link href="https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400&family=BJCree:wght@400;600;700&family=Nothing+You+Could+Do&family=Rampart+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Assignment 6: jQuery from CDN -->
+    <!-- Applies the saved light / dark theme before the page is drawn -->
+    <script src="js/theme.js"></script>
+    <!-- jQuery (used by js/script.js) -->
     <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
     <header id="main-header">
-        <div>
-        <h1 id="kanji">柚子</h1>
-        <h1 id="yuzu">Yuzu Kitchen</h1>
-        </div>
-        <nav>
+        <a href="index.html" class="brand" aria-label="Yuzu Kitchen, home page">
+            <span class="brand-kanji" aria-hidden="true">柚子</span>
+            <span class="brand-name">Yuzu Kitchen</span>
+        </a>
+
+        <nav class="main-nav" id="main-nav" aria-label="Main">
             <a href="index.html">Main</a>
             <a href="about.html">About Us</a>
-            <a href="Dishes.html">Dishes</a>
-            <a href="Drinks.html">Drinks</a>
+            <a href="dishes.html">Dishes</a>
+            <a href="drinks.html">Drinks</a>
+            <a href="recipes.html">Recipes</a>
             <a href="gallery.html">Gallery</a>
             <a href="contact.html">Contact</a>
-            <button id="bg-toggle-btn" class="theme-btn">Change Theme</button>
+            <!-- Changes to the user's name after logging in (js/script.js) -->
+            <a href="login.html" class="nav-account" id="nav-account"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i> Log In</a>
         </nav>
+
+        <button type="button" class="theme-switch" id="theme-switch" role="switch" aria-checked="false" aria-label="Dark mode">
+            <span class="theme-switch-track"><span class="theme-switch-thumb"><i class="fa-solid fa-sun" aria-hidden="true"></i></span></span>
+        </button>
+
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+            <span></span><span></span><span></span>
+        </button>
     </header>
-    <main>
-        <section class="main-block">
-            <div class="main-block-image">
-                <img src="images/HeroImage.jpg" alt="Restaurant Interior">
+
+    <main id="main">
+        <section class="hero-home">
+            <div class="hero-home-image">
+                <img src="images/HeroImage.jpg" alt="A chef holding a wooden tray of fresh fish, crab and seafood">
             </div>
-            <div id="main-text-main-block">
-                <p class="eyebrow">Coastal Japanese Cuisine</p>
-                <h2>Where the Sea<br><span>Meets the Table</span></h2>
-                <button id="open-modal-btn" class="submit-btn reserve-btn open-modal-btn">Reserve a Table</button>
-                <div class="rating-container">
-                    <p id="time-greeting" class="eyebrow" style="text-align: center; font-weight: bold; margin: 10px;"></p>
-                <p style="margin-top: 30px;">Rate Our Restaurant</p>
-                    <span class="star" style="font-size: 2rem; cursor: pointer; color: gray;">★</span>
-                    <span class="star" style="font-size: 2rem; cursor: pointer; color: gray;">★</span>
-                    <span class="star" style="font-size: 2rem; cursor: pointer; color: gray;">★</span>
-                    <span class="star" style="font-size: 2rem; cursor: pointer; color: gray;">★</span>
-                    <span class="star" style="font-size: 2rem; cursor: pointer; color: gray;">★</span>
-                </div>
-            </div>
-
-            
-        </section>
-
-        <section class="cards">
-            
-            <h2>Discover Yuzu Kitchen</h2>
-            <div class="card-container">
-                
-                <div class="card">
-                    <img src="https://images.themodernproper.com/production/posts/2022/FreshSpringRolls_Shot5_82.jpg?w=1200&h=630&q=82&fm=jpg&fit=crop&dm=1756130992&s=eb3527176b3b8041e1d62870b2dfe906" alt="Fresh Spring Rolls">
-                    <h3>Our Menu</h3>
-                    <p>Explore our fresh, farm-to-table coastal Japanese dishes prepared daily.</p>
-                    <a href="Dishes.html"><button>View Dishes</button></a>
-                </div>
-            
-
-                
-                <div class="card">
-                    <img src="https://platform.dc.eater.com/wp-content/uploads/sites/9/chorus/uploads/chorus_asset/file/23236343/D85_0431_HDR.jpeg" alt="Summer Terrace">
-                    <h3>Summer Terrace</h3>
-                    <p>Enjoy live music on Friday and Saturday evenings with a beautiful view.</p>
-                    <button id="book-a-table-btn">Book a Table</button>
+            <div class="hero-home-text">
+                <p class="eyebrow">Coastal Japanese cuisine · Astana</p>
+                <h1 class="hero-title">Where the Sea <span>Meets the Table</span></h1>
+                <p class="hero-lead">Fresh seafood, sizzling woks and an open kitchen. Book a table for tonight, or take our favourite recipes home with you.</p>
+                <div class="button-row">
+                    <button type="button" class="btn btn-primary" data-open-modal="booking-modal"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i> Reserve a Table</button>
+                    <a href="dishes.html" class="btn btn-outline">View the Menu <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
 
-                
-                <div class="card">
-                    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/33/31/a4/da/888-restaurant-open-kitchen.jpg?w=1200&h=1200&s=1" alt="Open Kitchen">
-                    <h3>Open Kitchen</h3>
-                    <p>Watch Head Chef Possuka create culinary magic right before your eyes.</p>
-                    <a href="about.html"><button>Our Story</button></a>
+                <p id="time-greeting" class="greeting"></p>
+
+                <div class="rating">
+                    <p class="rating-label" id="rating-label">Rate our restaurant</p>
+                    <div class="rating-stars" role="group" aria-labelledby="rating-label">
+                        <button type="button" class="star" aria-label="1 star">★</button>
+                        <button type="button" class="star" aria-label="2 stars">★</button>
+                        <button type="button" class="star" aria-label="3 stars">★</button>
+                        <button type="button" class="star" aria-label="4 stars">★</button>
+                        <button type="button" class="star" aria-label="5 stars">★</button>
+                    </div>
+                    <p class="rating-note" id="rating-note" aria-live="polite"></p>
                 </div>
             </div>
         </section>
 
-        <!-- Assignment 6, Task 5: animated number counter -->
-        <section class="section stats-section">
+        <section class="section section--surface">
             <div class="container">
-                <p class="eyebrow" style="text-align: center;">Yuzu in numbers</p>
-                <h2 class="team-title">Since our first pop-up</h2>
+                <div class="section-header">
+                    <p class="eyebrow">Why guests come back</p>
+                    <h2 class="section-title">Discover Yuzu Kitchen</h2>
+                </div>
+                <div class="card-container">
+                    <article class="card">
+                        <div class="card-image">
+                            <img src="https://images.themodernproper.com/production/posts/2022/FreshSpringRolls_Shot5_82.jpg?w=1200&amp;h=630&amp;q=82&amp;fm=jpg&amp;fit=crop&amp;dm=1756130992&amp;s=eb3527176b3b8041e1d62870b2dfe906" alt="Fresh spring rolls with dipping sauce" loading="lazy">
+                        </div>
+                        <div class="card-body">
+                            <h3><i class="fa-solid fa-utensils" aria-hidden="true"></i>Our Menu</h3>
+                            <p>Fresh coastal Japanese dishes, live seafood and a drinks list built around sake and tea.</p>
+                            <a href="dishes.html" class="btn btn-primary">View Dishes <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <div class="card-image">
+                            <img src="https://platform.dc.eater.com/wp-content/uploads/sites/9/chorus/uploads/chorus_asset/file/23236343/D85_0431_HDR.jpeg" alt="The restaurant's summer terrace with warm evening light" loading="lazy">
+                        </div>
+                        <div class="card-body">
+                            <h3><i class="fa-solid fa-music" aria-hidden="true"></i>Summer Terrace</h3>
+                            <p>Live music on Friday and Saturday evenings, with a view over the city.</p>
+                            <button type="button" class="btn btn-primary" data-open-modal="booking-modal">Book a Table <i class="fa-solid fa-calendar-check" aria-hidden="true"></i></button>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <div class="card-image">
+                            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/33/31/a4/da/888-restaurant-open-kitchen.jpg?w=1200&amp;h=1200&amp;s=1" alt="Chefs cooking in the open kitchen" loading="lazy">
+                        </div>
+                        <div class="card-body">
+                            <h3><i class="fa-solid fa-fire-burner" aria-hidden="true"></i>Open Kitchen</h3>
+                            <p>Watch Head Chef Possuka and the team cook right in front of you.</p>
+                            <a href="about.html" class="btn btn-primary">Our Story <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Animated number counter -->
+        <section class="section section--card stats-section">
+            <div class="container">
+                <div class="section-header">
+                    <p class="eyebrow">Yuzu in numbers</p>
+                    <h2 class="section-title">Since our first pop-up</h2>
+                </div>
                 <div class="stats-grid">
                     <div class="stat">
+                        <i class="fa-solid fa-face-smile" aria-hidden="true"></i>
                         <span class="stat-number" data-target="12000" data-suffix="+">0</span>
                         <p>Happy guests</p>
                     </div>
                     <div class="stat">
-                        <span class="stat-number" data-target="45" data-suffix="">0</span>
-                        <p>Dishes on the menu</p>
+                        <i class="fa-solid fa-bowl-rice" aria-hidden="true"></i>
+                        <span class="stat-number" data-target="43" data-suffix="">0</span>
+                        <p>Dishes and drinks</p>
                     </div>
                     <div class="stat">
+                        <i class="fa-solid fa-star" aria-hidden="true"></i>
                         <span class="stat-number" data-target="850" data-suffix="+">0</span>
                         <p>5-star reviews</p>
                     </div>
                     <div class="stat">
+                        <i class="fa-solid fa-fire" aria-hidden="true"></i>
                         <span class="stat-number" data-target="6" data-suffix=" yrs">0</span>
                         <p>Of fresh woks</p>
                     </div>
                 </div>
 
-                <!-- Assignment 6, Task 8: copy to clipboard -->
+                <!-- Copy to clipboard -->
                 <div class="promo-box">
-                    <p>Use this promo code when booking for 10% off your first dinner:</p>
+                    <p>Use this promo code when you book for 10% off your first dinner:</p>
                     <div class="copy-snippet">
                         <code class="copy-text">SE2513</code>
                         <button type="button" class="copy-btn" aria-label="Copy promo code">
-                            <span class="copy-icon">⧉</span>
+                            <i class="copy-icon fa-regular fa-copy" aria-hidden="true"></i>
                             <span class="copy-tooltip">Copied to clipboard!</span>
                         </button>
                     </div>
@@ -126,86 +165,156 @@
             </div>
         </section>
 
-        <section class="section team-section">
+        <section class="section">
             <div class="container">
-                <p class="eyebrow" style="text-align: center;">Meet the Creators</p>
-                <h2 class="team-title">The Development Team</h2>
-                
-                <div class="team-grid">
-                    <div class="team-member">
-                        <h3>Adilbek Shangerey</h3>
-                        <p class="team-role">Lead Developer,Made the pages index.html and contact.html</p>
+                <div class="club-band">
+                    <div>
+                        <p class="eyebrow">The Yuzu Club</p>
+                        <h2>Make Yuzu Kitchen yours</h2>
+                        <p>Create a free account to keep your reservations in one place and save the dishes and recipes you love.</p>
+                        <ul class="perk-list">
+                            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Faster booking</li>
+                            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Favourite dishes</li>
+                            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Saved recipes</li>
+                        </ul>
                     </div>
-                    
-                    <div class="team-member">
-                        <h3>Alizhan Rymkhan</h3>
-                        <p class="team-role">HTML Structure and Quality Control,made the pages about.html and gallery.html</p>
-                    </div>
-                    
-                    <div class="team-member">
-                        <h3>Yerassyl Gabbas</h3>
-                        <p class="team-role">CSS structure and pages Dishes.html and Drinks.html</p>
+                    <div class="button-row">
+                        <a href="signup.html" class="btn btn-primary"><i class="fa-solid fa-user-plus" aria-hidden="true"></i> Sign Up</a>
+                        <a href="login.html" class="btn btn-outline">Log In</a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
     <footer id="site-footer">
-    <div class="container">
-        <p>Team members: Alizhan Rymkhan, Adilbek Shangerey, Yerassyl Gabbas</p>
-    </div> 
-    </footer> 
+        <div class="container footer-grid">
+            <div>
+                <p class="footer-logo"><span class="brand-kanji" aria-hidden="true">柚子</span> <span class="brand-name">Yuzu Kitchen</span></p>
+                <p>Coastal Japanese cooking in the heart of Astana: fresh seafood, an open kitchen and no rush at the table.</p>
+            </div>
+            <div>
+                <h2 class="footer-heading">Visit us</h2>
+                <p><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Astana, Mangilik El Ave. 55</p>
+                <p><i class="fa-solid fa-phone" aria-hidden="true"></i><a href="tel:+77172552513">+7 (717) 255-25-13</a></p>
+                <p><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="mailto:hello@yuzukitchen.kz">hello@yuzukitchen.kz</a></p>
+            </div>
+            <div>
+                <h2 class="footer-heading">Opening hours</h2>
+                <p>Mon – Thu: 10:00 – 23:00</p>
+                <p>Fri: 10:00 – 00:00</p>
+                <p>Sat: 11:00 – 00:00</p>
+                <p>Sun: 11:00 – 22:00</p>
+            </div>
+            <div>
+                <h2 class="footer-heading">Explore</h2>
+                <ul class="footer-links">
+                    <li><a href="dishes.html">Our menu</a></li>
+                    <li><a href="recipes.html">Cook at home</a></li>
+                    <li><a href="contact.html">Book a table</a></li>
+                    <li><a href="profile.html">My profile</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="footer-bottom">© 2026 Yuzu Kitchen · Made by Alizhan Rymkhan, Adilbek Shangerey and Yerassyl Gabbas</p>
+    </footer>
 
-    <div id="booking-modal" class="modal-overlay">
+    <!-- Booking modal (opened by "Reserve a Table" / "Book a Table") -->
+    <div id="booking-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title" aria-hidden="true">
         <div class="modal-content">
-        <span class="close-btn" id="close-modal-btn">&times;</span>
-        
-        <h2>Book a Table</h2>
-        <p style="text-align: center;">Please fill the form below, and our manager will contact you to confirm the booking.</p>
-        
-        <form id="contact-form" name="book-form" action="#" onsubmit="return validateForm()" method="POST">
-                <div class="form-group">
-                    <label for="name">Your Name:</label>
-                    <input type="text" id="name" name="name" class="form-control" required>
-                </div>
+            <button type="button" class="close-btn" aria-label="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+            <div class="booking-block">
+                <h2 id="booking-modal-title">Book a Table</h2>
+                <p class="form-intro">Fill in the form and we'll keep a table ready for you.</p>
+                <form class="booking-form" id="booking-form" action="#" method="post" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="booking-name">Your name</label>
+                            <input type="text" id="booking-name" name="name" class="form-control" autocomplete="name" placeholder="e.g. Aigerim Sultanova" data-validate="required name">
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-email">Email</label>
+                            <input type="text" id="booking-email" name="email" class="form-control" inputmode="email" autocomplete="email" placeholder="name@example.com" data-validate="required email">
+                        </div>
+                    </div>
 
-                <div class="form-group">
-                    <label for="email">Your Email:</label>
-                    <input type="email" id="email" name="email" class="form-control" required>
-                </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="booking-phone">Phone number</label>
+                            <input type="tel" id="booking-phone" name="phone" class="form-control" autocomplete="tel" placeholder="+7 701 234 56 78" data-validate="required phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-hall">Hall</label>
+                            <select id="booking-hall" name="hall" class="form-control" data-validate="required">
+                                <option value="">Choose a hall</option>
+                                <option value="main">Main Hall</option>
+                                <option value="terrace">Summer Terrace</option>
+                                <option value="vip">VIP Room</option>
+                            </select>
+                        </div>
+                    </div>
 
-                <div class="form-group">
-                    <label for="hall">Choose Hall: </label>
-                    <select id="hall" name="hall" class="form-control">
-                        <option value="main">Main Hall</option>
-                        <option value="terrace">Summer-Terrace</option>
-                        <option value="vip">VIP-Room</option>
-                    </select>
-                </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="booking-date">Date</label>
+                            <input type="date" id="booking-date" name="date" class="form-control" data-validate="required bookingDate" data-required-message="Please choose a date for your visit.">
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-time">Time</label>
+                            <select id="booking-time" name="time" class="form-control" data-validate="required bookingTime" data-date-field="booking-date">
+                                <option value="">Choose a time</option>
+                            <option value="12:00">12:00</option>
+                            <option value="12:30">12:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:30">13:30</option>
+                            <option value="14:00">14:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="15:00">15:00</option>
+                            <option value="15:30">15:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="16:30">16:30</option>
+                            <option value="17:00">17:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value="18:00">18:00</option>
+                            <option value="18:30">18:30</option>
+                            <option value="19:00">19:00</option>
+                            <option value="19:30">19:30</option>
+                            <option value="20:00">20:00</option>
+                            <option value="20:30">20:30</option>
+                            <option value="21:00">21:00</option>
+                            </select>
+                        </div>
+                    </div>
 
-                <div class="form-group">
-                    <label>Table Type:</label><br>
-                    <input type="radio" id="table2" name="table_type" value="2_persons" checked>
-                    <label for="table2" style="display:inline; font-weight:normal;">For Two</label><br>
-                    
-                    <input type="radio" id="table4" name="table_type" value="4_persons">
-                    <label for="table4" style="display:inline; font-weight:normal;">For four</label><br>
-                    
-                    <input type="radio" id="tableLarge" name="table_type" value="large">
-                    <label for="tableLarge" style="display:inline; font-weight:normal;">For Big Company</label>
-                </div>
+                    <div class="form-group">
+                        <fieldset>
+                            <legend>Table</legend>
+                            <div class="radio-pills">
+                                <input type="radio" id="table-two" name="table_type" value="2_persons" checked>
+                                <label for="table-two"><i class="fa-solid fa-user-group" aria-hidden="true"></i> For two</label>
+                                <input type="radio" id="table-four" name="table_type" value="4_persons">
+                                <label for="table-four"><i class="fa-solid fa-users" aria-hidden="true"></i> For four</label>
+                                <input type="radio" id="table-large" name="table_type" value="large">
+                                <label for="table-large"><i class="fa-solid fa-people-group" aria-hidden="true"></i> Big company</label>
+                            </div>
+                        </fieldset>
+                    </div>
 
-                <div class="form-group">
-                    <label for="message">Your Requests</label>
-                    <textarea id="message" name="message" rows="4" class="form-control" placeholder="For example: Allergies, Kids Table and ETC...."></textarea>
-                </div>
+                    <div class="form-group">
+                        <label for="booking-message">Special requests <span class="optional">(optional)</span></label>
+                        <textarea id="booking-message" name="message" rows="3" class="form-control" placeholder="Allergies, a kids' chair, a birthday cake..." data-validate="maxLength" data-max-length="300"></textarea>
+                        <p class="char-counter" data-for="booking-message" aria-hidden="true"></p>
+                    </div>
 
-                <button type="submit" class="submit-btn" style="width: 100%;">Submit Request</button>
+                    <div class="form-alert" role="status" aria-live="polite"></div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i> Book my table</button>
+                        <button type="button" class="btn btn-ghost js-clear-form"><i class="fa-solid fa-eraser" aria-hidden="true"></i> Clear</button>
+                    </div>
                 </form>
+            </div>
         </div>
     </div>
-    <script src="script.js"></script>
-
-    
+    <script src="js/script.js"></script>
 </body>
 </html>

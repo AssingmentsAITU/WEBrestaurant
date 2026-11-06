@@ -3,184 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About us - Yuzu Kitchen</title>
+    <meta name="description" content="The story of Yuzu Kitchen, our head chef, what we believe in and answers to common questions.">
+    <title>About Us · Yuzu Kitchen</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+
+    <!-- Fonts and icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=BJCree:wght@400;500;600;700&family=Nothing+You+Could+Do&family=Rampart+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400&family=BJCree:wght@400;600;700&family=Nothing+You+Could+Do&family=Rampart+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Assignment 6: jQuery from CDN -->
+    <!-- Applies the saved light / dark theme before the page is drawn -->
+    <script src="js/theme.js"></script>
+    <!-- jQuery (used by js/script.js) -->
     <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
 </head>
 <body class="has-sidebar">
+    <a class="skip-link" href="#main">Skip to content</a>
+
     <header id="main-header">
-        <div>
-        <h1 id="kanji">柚子</h1>
-        <h1 id="yuzu">Yuzu Kitchen</h1>
-        </div>
-        <nav>
+        <a href="index.html" class="brand" aria-label="Yuzu Kitchen, home page">
+            <span class="brand-kanji" aria-hidden="true">柚子</span>
+            <span class="brand-name">Yuzu Kitchen</span>
+        </a>
+
+        <nav class="main-nav" id="main-nav" aria-label="Main">
             <a href="index.html">Main</a>
             <a href="about.html">About Us</a>
-            <a href="Dishes.html">Dishes</a>
-            <a href="Drinks.html">Drinks</a>
+            <a href="dishes.html">Dishes</a>
+            <a href="drinks.html">Drinks</a>
+            <a href="recipes.html">Recipes</a>
             <a href="gallery.html">Gallery</a>
             <a href="contact.html">Contact</a>
-            <button id="bg-toggle-btn" class="theme-btn">Change Theme</button>
+            <!-- Changes to the user's name after logging in (js/script.js) -->
+            <a href="login.html" class="nav-account" id="nav-account"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i> Log In</a>
         </nav>
-    </header>
-    <aside class="sidebar">
-        <div class="sidebar-content">
-            <h2>Opening hours</h2>
-            <table class="hours-table">
-                <tr><td>Mon – Thu</td><td>10:00 – 23:00</td></tr>
-                <tr><td>Friday</td><td>10:00 – 00:00</td></tr>
-                <tr><td>Saturday</td><td>11:00 – 00:00</td></tr>
-                <tr><td>Sunday</td><td>11:00 – 22:00</td></tr>
-            </table>
-            <div id="date-time-block">
-            <h2>Current Date and Time</h2>
-            <p id="date-time"></p>
-            </div>
-            <p id="status-banner" class="eyebrow"></p>
-            <div class="sidebar-info">
-                <h3>Location</h3>
-                <p>Astana, Mangilik El Ave.</p>
-            </div>
 
-            <a href="contact.html" class="sidebar-link">Book a table</a>
+        <button type="button" class="theme-switch" id="theme-switch" role="switch" aria-checked="false" aria-label="Dark mode">
+            <span class="theme-switch-track"><span class="theme-switch-thumb"><i class="fa-solid fa-sun" aria-hidden="true"></i></span></span>
+        </button>
+
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <aside class="sidebar" aria-label="Opening hours and location">
+        <div class="sidebar-content">
+            <div>
+                <h2>Opening hours</h2>
+                <table class="hours-table">
+                    <tr><td>Mon – Thu</td><td>10:00 – 23:00</td></tr>
+                    <tr><td>Friday</td><td>10:00 – 00:00</td></tr>
+                    <tr><td>Saturday</td><td>11:00 – 00:00</td></tr>
+                    <tr><td>Sunday</td><td>11:00 – 22:00</td></tr>
+                </table>
+            </div>
+            <p id="status-banner" class="open-status"></p>
+            <div>
+                <h3>Right now</h3>
+                <p id="date-time"></p>
+            </div>
+            <div>
+                <h3>Location</h3>
+                <p>Astana, Mangilik El Ave. 55</p>
+            </div>
+            <a href="contact.html" class="btn btn-primary btn-block"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i> Book a table</a>
         </div>
     </aside>
-    <main>
-        <!--Hero-->
-        <section class="section hero">
+
+    <main id="main">
+        <section class="about-hero">
             <div class="container">
-                <h1> 
-                    Our story started with one wok and one question.
-                </h1>
-                <p> Yuzu Kitchen began as a weekend pop-up run by three friends who
-                    couldn't agree on sushi or stir-fry — so the menu became both.
-                    Since then we've kept the same rule: fresh ingredients, an open
-                    kitchen, and no rush at the table.
-                </p>
+                <p class="eyebrow">Our story</p>
+                <h1>Our story started with one wok and one question.</h1>
+                <p>Yuzu Kitchen began as a weekend pop-up run by three friends who couldn't agree on sushi or stir-fry, so the menu became both. We still follow the same rule: fresh ingredients, an open kitchen and no rush at the table.</p>
             </div>
         </section>
 
-        <section class="section section--philosophy">
+        <section class="section">
             <div class="container">
-                <h2>
-                    What we believe in
-                </h2>
-                <ul>
-                    <li>Rice is cooked fresh every two hours, never held overnight.</li>
-                    <li>Every sauce is made in-house — no bottled substitutes.</li>
-                    <li>We source vegetables from local Astana growers when the season allows.</li>
-                    <li>Every table gets the same attention, whether it's a date night or a solo bowl of ramen.</li>
+                <p class="eyebrow">Our promise</p>
+                <h2 class="section-title">What we believe in</h2>
+                <ul class="belief-list">
+                    <li><i class="fa-solid fa-bowl-rice" aria-hidden="true"></i><p>Rice is cooked fresh every two hours, never held overnight.</p></li>
+                    <li><i class="fa-solid fa-bottle-droplet" aria-hidden="true"></i><p>Every sauce is made in-house, with no bottled substitutes.</p></li>
+                    <li><i class="fa-solid fa-seedling" aria-hidden="true"></i><p>We buy vegetables from local Astana growers whenever the season allows.</p></li>
+                    <li><i class="fa-solid fa-heart" aria-hidden="true"></i><p>Every table gets the same care, whether it's a date night or a solo bowl of ramen.</p></li>
                 </ul>
             </div>
         </section>
 
-        <section class="section section--chef">
+        <section class="section section--surface">
             <div class="container">
-                <p class="eyebrow"> Meet the kitchen</p>
-                <h2> The person behind the pass </h2>
-
+                <p class="eyebrow">Meet the kitchen</p>
+                <h2 class="section-title">The person behind the pass</h2>
                 <div class="chef-feature">
                     <div>
-                        <h3>Possuka Nakamode - Head Chef </h3>
-                        <p> Trained in Osaka before bringing wok cooking home to Astana.
-                            Possuka designs every seasonal menu and still plates the first
-                            order of the night herself.
-                        </p>
-                        <p> Off the clock, she's usually testing new dipping sauces on the
-                            rest of the team - and stealing their honest opinions before
-                            anything goes the menu.
-                        </p>
+                        <h3>Possuka Nakamode, Head Chef</h3>
+                        <p>Trained in Osaka before bringing wok cooking home to Astana. Possuka designs every seasonal menu and still plates the first order of the night herself.</p>
+                        <p>Off the clock, she's usually testing new dipping sauces on the rest of the team and collecting their honest opinions before anything goes on the menu.</p>
                     </div>
-                    <img src="https://img.jakpost.net/c/2020/04/08/2020_04_08_92239_1586333880._large.jpg" alt="Portrait of Head Chef">
+                    <img src="https://img.jakpost.net/c/2020/04/08/2020_04_08_92239_1586333880._large.jpg" alt="Portrait of Head Chef Possuka Nakamode" loading="lazy">
                 </div>
             </div>
         </section>
-        <section class="section team-section">
-            <div class="container">
-                <p class="eyebrow" style="text-align: center;">Meet the Creators</p>
-                <h2 class="team-title">The Development Team</h2>
-                
-                <div class="team-grid">
-                    <div class="team-member">
-                        <h3>Adilbek Shangerey</h3>
-                        <p class="team-role">Lead Developer,Made the pages index.html and contact.html</p>
-                    </div>
-                    
-                    <div class="team-member">
-                        <h3>Alizhan Rymkhan</h3>
-                        <p class="team-role">HTML Structure and Quality Control,made the pages about.html and gallery.html</p>
-                    </div>
-                    
-                    <div class="team-member">
-                        <h3>Yerassyl Gabbas</h3>
-                        <p class="team-role">CSS structure and pages Dishes.html and Drinks.html</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+
         <section class="section section--faq">
             <div class="container">
                 <p class="eyebrow">Good to know</p>
-                <h2>Frequently asked questions</h2>
+                <h2 class="section-title">Frequently asked questions</h2>
 
-                <!-- Assignment 6, Task 3: search highlighting -->
-                <div class="faq-search">
-                    <input type="text" id="faq-search-input" placeholder="Search the FAQ, e.g. parking" autocomplete="off" aria-label="Search the FAQ">
-                    <p id="faq-search-count" class="search-count"></p>
+                <!-- Search with highlighting -->
+                <div class="search-box faq-search">
+                    <label for="faq-search-input" class="visually-hidden">Search this page</label>
+                    <i class="fa-solid fa-magnifying-glass search-icon" aria-hidden="true"></i>
+                    <input type="text" id="faq-search-input" class="search-input" placeholder="Search the page, e.g. parking" autocomplete="off">
+                    <p id="faq-search-count" class="search-count" aria-live="polite"></p>
                 </div>
 
                 <div class="accordion">
-
-                <div class="accordion-item">
-                    <button class="accordion-header" aria-expanded="false">
-                    Do I need a reservation?
-                    </button>
-                    <div class="accordion-content">
-                    <p>Not before 6 pm. In the evening, especially on weekends, we recommend booking a table through the Contact page.</p>
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-header" aria-expanded="false">Do I need a reservation?</button>
+                        <div class="accordion-content">
+                            <p>Not before 6 pm. In the evening, especially at weekends, we recommend booking a table on the Contact page.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-header" aria-expanded="false">Do you have vegetarian options?</button>
+                        <div class="accordion-content">
+                            <p>Yes. Most of our wok dishes and several rolls can be made fully vegetarian. Just tell your waiter.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-header" aria-expanded="false">Is there parking nearby?</button>
+                        <div class="accordion-content">
+                            <p>There is a free parking lot right behind the building, plus street parking on the main road.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-header" aria-expanded="false">Can I order food to go?</button>
+                        <div class="accordion-content">
+                            <p>Of course. Call us or order at the counter, and your food will be packed fresh.</p>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="accordion-item">
-                    <button class="accordion-header" aria-expanded="false">
-                    Do you have vegetarian options?
-                    </button>
-                    <div class="accordion-content">
-                    <p>Yes. Most of our wok dishes and several rolls can be made fully vegetarian. Just tell your waiter.</p>
-                    </div>
+        <section class="section section--surface team-section">
+            <div class="container">
+                <div class="section-header">
+                    <p class="eyebrow">Meet the creators</p>
+                    <h2 class="section-title">The development team</h2>
                 </div>
-
-                <div class="accordion-item">
-                    <button class="accordion-header" aria-expanded="false">
-                    Is there parking nearby?
-                    </button>
-                    <div class="accordion-content">
-                    <p>There is a free parking lot right behind the building, plus street parking on the main road.</p>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="team-avatar" aria-hidden="true">AS</div>
+                        <h3>Adilbek Shangerey</h3>
+                        <p class="team-role">Lead developer · Main and Contact pages</p>
                     </div>
-                </div>
-
-                <div class="accordion-item">
-                    <button class="accordion-header" aria-expanded="false">
-                    Can I order food to go?
-                    </button>
-                    <div class="accordion-content">
-                    <p>Of course. Call us or order at the counter, and your food will be packed fresh.</p>
+                    <div class="team-member">
+                        <div class="team-avatar" aria-hidden="true">AR</div>
+                        <h3>Alizhan Rymkhan</h3>
+                        <p class="team-role">HTML structure and quality control · About and Gallery pages</p>
                     </div>
-                </div>
-
+                    <div class="team-member">
+                        <div class="team-avatar" aria-hidden="true">YG</div>
+                        <h3>Yerassyl Gabbas</h3>
+                        <p class="team-role">CSS structure · Dishes and Drinks pages</p>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
     <footer id="site-footer">
-    <div class="container">
-        <p>Team members: Alizhan Rymkhan, Adilbek Shangerey, Yerassyl Gabbas</p>
-    </div> 
-    </footer> 
-    <script src="script.js"></script>
+        <div class="container footer-grid">
+            <div>
+                <p class="footer-logo"><span class="brand-kanji" aria-hidden="true">柚子</span> <span class="brand-name">Yuzu Kitchen</span></p>
+                <p>Coastal Japanese cooking in the heart of Astana: fresh seafood, an open kitchen and no rush at the table.</p>
+            </div>
+            <div>
+                <h2 class="footer-heading">Visit us</h2>
+                <p><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Astana, Mangilik El Ave. 55</p>
+                <p><i class="fa-solid fa-phone" aria-hidden="true"></i><a href="tel:+77172552513">+7 (717) 255-25-13</a></p>
+                <p><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="mailto:hello@yuzukitchen.kz">hello@yuzukitchen.kz</a></p>
+            </div>
+            <div>
+                <h2 class="footer-heading">Opening hours</h2>
+                <p>Mon – Thu: 10:00 – 23:00</p>
+                <p>Fri: 10:00 – 00:00</p>
+                <p>Sat: 11:00 – 00:00</p>
+                <p>Sun: 11:00 – 22:00</p>
+            </div>
+            <div>
+                <h2 class="footer-heading">Explore</h2>
+                <ul class="footer-links">
+                    <li><a href="dishes.html">Our menu</a></li>
+                    <li><a href="recipes.html">Cook at home</a></li>
+                    <li><a href="contact.html">Book a table</a></li>
+                    <li><a href="profile.html">My profile</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="footer-bottom">© 2026 Yuzu Kitchen · Made by Alizhan Rymkhan, Adilbek Shangerey and Yerassyl Gabbas</p>
+    </footer>
+
+    <script src="js/script.js"></script>
 </body>
-</html> 
+</html>

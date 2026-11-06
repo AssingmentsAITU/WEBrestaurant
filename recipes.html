@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Asian recipes to cook at home, loaded live from TheMealDB. Filter by cuisine, search by dish and save your favourites.">
+    <title>Cook at Home · Yuzu Kitchen</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+
+    <!-- Fonts and icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400&family=BJCree:wght@400;600;700&family=Nothing+You+Could+Do&family=Rampart+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Applies the saved light / dark theme before the page is drawn -->
+    <script src="js/theme.js"></script>
+    <!-- jQuery (used by js/script.js) -->
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header id="main-header">
+        <a href="index.html" class="brand" aria-label="Yuzu Kitchen, home page">
+            <span class="brand-kanji" aria-hidden="true">柚子</span>
+            <span class="brand-name">Yuzu Kitchen</span>
+        </a>
+
+        <nav class="main-nav" id="main-nav" aria-label="Main">
+            <a href="index.html">Main</a>
+            <a href="about.html">About Us</a>
+            <a href="dishes.html">Dishes</a>
+            <a href="drinks.html">Drinks</a>
+            <a href="recipes.html">Recipes</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html">Contact</a>
+            <!-- Changes to the user's name after logging in (js/script.js) -->
+            <a href="login.html" class="nav-account" id="nav-account"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i> Log In</a>
+        </nav>
+
+        <button type="button" class="theme-switch" id="theme-switch" role="switch" aria-checked="false" aria-label="Dark mode">
+            <span class="theme-switch-track"><span class="theme-switch-thumb"><i class="fa-solid fa-sun" aria-hidden="true"></i></span></span>
+        </button>
+
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <main id="main">
+        <div class="container">
+            <section class="page-intro">
+                <p class="eyebrow">Cook at home</p>
+                <h1 class="page-title">Recipes</h1>
+                <p class="section-lead">Loved a dish at Yuzu? Try these Asian recipes in your own kitchen. Pick a cuisine or search for a dish.</p>
+            </section>
+
+            <div class="recipe-toolbar">
+                <form class="recipe-search-form" id="recipe-search-form" action="#" novalidate>
+                    <div class="form-group">
+                        <div class="search-box">
+                            <label for="recipe-query" class="visually-hidden">Search recipes</label>
+                            <i class="fa-solid fa-magnifying-glass search-icon" aria-hidden="true"></i>
+                            <input type="text" id="recipe-query" name="query" class="search-input" placeholder="Search recipes, e.g. ramen, curry..." autocomplete="off" data-validate="required minLength" data-min-length="2" data-required-message="Type a dish or ingredient to search.">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Search <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+                </form>
+
+                <!-- Cuisine buttons are added by js/script.js -->
+                <div class="cuisine-filters" id="cuisine-filters" role="group" aria-label="Filter by cuisine"></div>
+                <p class="recipe-summary" id="recipe-summary" aria-live="polite"></p>
+            </div>
+
+            <div id="recipe-status"></div>
+            <div class="recipe-grid" id="recipe-grid" aria-live="polite"></div>
+
+            <p class="api-credit">Recipes and photos come live from <a href="https://www.themealdb.com" target="_blank" rel="noopener">TheMealDB</a>, a free public recipe API.</p>
+        </div>
+        <div class="section"></div>
+    </main>
+    <footer id="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <p class="footer-logo"><span class="brand-kanji" aria-hidden="true">柚子</span> <span class="brand-name">Yuzu Kitchen</span></p>
+                <p>Coastal Japanese cooking in the heart of Astana: fresh seafood, an open kitchen and no rush at the table.</p>
+            </div>
+            <div>
+                <h2 class="footer-heading">Visit us</h2>
+                <p><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Astana, Mangilik El Ave. 55</p>
+                <p><i class="fa-solid fa-phone" aria-hidden="true"></i><a href="tel:+77172552513">+7 (717) 255-25-13</a></p>
+                <p><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="mailto:hello@yuzukitchen.kz">hello@yuzukitchen.kz</a></p>
+            </div>
+            <div>
+                <h2 class="footer-heading">Opening hours</h2>
+                <p>Mon – Thu: 10:00 – 23:00</p>
+                <p>Fri: 10:00 – 00:00</p>
+                <p>Sat: 11:00 – 00:00</p>
+                <p>Sun: 11:00 – 22:00</p>
+            </div>
+            <div>
+                <h2 class="footer-heading">Explore</h2>
+                <ul class="footer-links">
+                    <li><a href="dishes.html">Our menu</a></li>
+                    <li><a href="recipes.html">Cook at home</a></li>
+                    <li><a href="contact.html">Book a table</a></li>
+                    <li><a href="profile.html">My profile</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="footer-bottom">© 2026 Yuzu Kitchen · Made by Alizhan Rymkhan, Adilbek Shangerey and Yerassyl Gabbas</p>
+    </footer>
+
+    <!-- Recipe details (filled by js/script.js) -->
+    <div id="recipe-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="recipe-modal-title" aria-hidden="true">
+        <div class="modal-content modal-content--wide">
+            <button type="button" class="close-btn" aria-label="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+            <div id="recipe-modal-body"></div>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

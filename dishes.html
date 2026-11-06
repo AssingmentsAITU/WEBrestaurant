@@ -3,186 +3,290 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dishes - Yuzu Kitchen</title>
+    <meta name="description" content="The Yuzu Kitchen food menu: appetizers, soups, live seafood, main dishes, sauces and desserts.">
+    <title>Dishes · Yuzu Kitchen</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+
+    <!-- Fonts and icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=BJCree:wght@400;500;600;700&family=Nothing+You+Could+Do&family=Rampart+One&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400&family=BJCree:wght@400;600;700&family=Nothing+You+Could+Do&family=Rampart+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Assignment 6: jQuery from CDN -->
+    <!-- Applies the saved light / dark theme before the page is drawn -->
+    <script src="js/theme.js"></script>
+    <!-- jQuery (used by js/script.js) -->
     <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
 </head>
-
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
     <header id="main-header">
-        <div>
-        <h1 id="kanji">柚子</h1>
-        <h1 id="yuzu">Yuzu Kitchen</h1>
-        </div>
-        <nav>
+        <a href="index.html" class="brand" aria-label="Yuzu Kitchen, home page">
+            <span class="brand-kanji" aria-hidden="true">柚子</span>
+            <span class="brand-name">Yuzu Kitchen</span>
+        </a>
+
+        <nav class="main-nav" id="main-nav" aria-label="Main">
             <a href="index.html">Main</a>
             <a href="about.html">About Us</a>
-            <a href="Dishes.html">Dishes</a>
-            <a href="Drinks.html">Drinks</a>
+            <a href="dishes.html">Dishes</a>
+            <a href="drinks.html">Drinks</a>
+            <a href="recipes.html">Recipes</a>
             <a href="gallery.html">Gallery</a>
             <a href="contact.html">Contact</a>
-            <button id="bg-toggle-btn" class="theme-btn">Change Theme</button>
+            <!-- Changes to the user's name after logging in (js/script.js) -->
+            <a href="login.html" class="nav-account" id="nav-account"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i> Log In</a>
         </nav>
+
+        <button type="button" class="theme-switch" id="theme-switch" role="switch" aria-checked="false" aria-label="Dark mode">
+            <span class="theme-switch-track"><span class="theme-switch-thumb"><i class="fa-solid fa-sun" aria-hidden="true"></i></span></span>
+        </button>
+
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+            <span></span><span></span><span></span>
+        </button>
     </header>
-    
-    <main>
-    <h1 class="DishesDrinks-title">Menu</h1>
-    <!-- Assignment 6, Tasks 1-2: live filter + autocomplete -->
-    <div class="menu-search">
-        <input type="text" id="menu-search-input" placeholder="Search the menu, e.g. salmon, tea..." autocomplete="off" aria-label="Search the menu">
-        <ul id="search-suggestions" class="search-suggestions"></ul>
-        <p id="search-count" class="search-count"></p>
-    </div>
-    <hr>
-    <details>
-        <summary>Appetizers</summary>
-    <div class="Menumenu">    
-    <span>Spring Rolls - 5</span>
-    <img src="https://images.themodernproper.com/production/posts/2022/FreshSpringRolls_Shot5_82.jpg?w=1200&h=630&q=82&fm=jpg&fit=crop&dm=1756130992&s=eb3527176b3b8041e1d62870b2dfe906" alt="Spring Rolls" width="150">
-    </div>
-    <div class="Menumenu">
-    <span>Garlic Bread - 3</span>
-    <img src="https://www.allrecipes.com/thmb/ymrjQ3GFq_Fc7Fu2yfvIj108tcM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/21080-great-garlic-bread-DDMFS-4x3-e1c7b5c79fde4d629a9b7bce6c0702ed.jpg" alt="Garlic Bread" width="150">
-    </div>
-    <div class="Menumenu">
-    <span>Bruschetta - 4</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmpN6gzinMjYKzT3-I6av4jmSiPP8SnOeVRoxgVaXobw&s=10" alt="Bruschetta" width="150">
-    </div>
-    </details>
 
-    <hr>
-    <details>
-        <summary>Soups</summary>
-    <div class="Menumenu"> 
-    <span>Tomato Soup - 4</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPDK7oeQJw7xWz3UfnQrDSwi4HkGOt9o-hSN1WDxxXBQ&s=10" alt="Tomato Soup" width="150">
-    </div>
-    <div class="Menumenu">
-    <span>Chicken Noodle Soup - 5</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbPmv2-s8p6UB_Hz8JQG92MszNBgIaezlTxLAxSZqicw&s=10" alt="Chicken Noodle Soup" width="150">
-    </div>
-    <div class="Menumenu">
-    <span>Minestrone Soup - 6</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT46YE9x-fhdpJeGNJqY5ZsSSbPTUi3Y4lzLyUV6S2Y4vcvoEHmhGOkPaie&s=10" alt="Minestrone Soup" width="150">
-    </div>
-    </details>
+    <main id="main">
+        <div class="container">
+            <section class="page-intro">
+                <p class="eyebrow">Our menu</p>
+                <h1 class="page-title">Dishes</h1>
+                <p class="section-lead">Search the menu, open a category, and tap the heart to save the dishes you love.</p>
+            </section>
 
-    <hr>
-    <details>
-        <summary>Live Seafood</summary>
-    <div class="Menumenu">
-    <span>Grilled Salmon - 12 per kg</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwUb_O7hz35n0MhDUd7osmY0sTZUTNp2FRjFNT3F4WFw&s=10" alt="Grilled Salmon" width="150">
-    </div>
-    <div class="Menumenu">
-    <span>Boiled Crab - 10 per kg</span>
-    <img src="https://cdn.sanity.io/images/2r0kdewr/production/85d24f382c94a9ff4dc98724eaa2ae65e01f0967-1000x668.jpg" alt="Boiled Crab" width="150">
-    </div>
-    <div class="Menumenu">
-    <span>Steamed Mussels - 11 per kg</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBieBXlBcY7XCguo0gU7eLpugd7ZyWrsF3C78beeSDYHZeWfXPxspr_dl8&s=10" alt="Steamed Mussels" width="150">
-    </div>
-    <div class="Menumenu">
-    <span>Lobster Tail - 15 per kg</span>
-    <img src="https://cdn.sanity.io/images/2r0kdewr/production/502ea467ef99124fd308e34ff5085c485f1be8f7-500x500.jpg" alt="Lobster Tail" width="150">
-    </div>
-    <h4>Important Note:</h4>
-    <p>All seafood is served live and prepared fresh upon order.
-    Please inform your server of any allergies or dietary restrictions.
-    Price will be charged by weight</p>
-    </details>
+            <!-- Live filter + autocomplete + saved searches and favourites -->
+            <div class="search-box">
+                <label for="menu-search-input" class="visually-hidden">Search the menu</label>
+                <i class="fa-solid fa-magnifying-glass search-icon" aria-hidden="true"></i>
+                <input type="text" id="menu-search-input" class="search-input" data-menu="dishes" placeholder="Search dishes, e.g. salmon, soup..." autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="search-suggestions">
+                <ul id="search-suggestions" class="search-suggestions" role="listbox"></ul>
+                <p id="search-count" class="search-count" aria-live="polite"></p>
+            </div>
+            <div class="menu-tools">
+                <button type="button" class="chip" id="favorites-filter" aria-pressed="false"><i class="fa-solid fa-heart" aria-hidden="true"></i> Favourites only (<span id="favorites-count">0</span>)</button>
+                <div class="recent-searches" id="recent-searches"></div>
+            </div>
 
-    <hr>
-    <details>
-        <summary>Main Dishes</summary>
-    <div class="Menumenu">
-    <span>Grilled Chicken - 51 </span>
-    <img src="https://www.lecremedelacrumb.com/wp-content/uploads/2015/07/sticky-grilled-asian-chicken-5.jpg" alt="Grilled Chicken" width="150">
-    </div>
-    <div class="Menumenu">
-    <span>Beef Steak - 44</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCMWKYnwsP7rVKCsT9oLOfgDhOiupH5tzTmQngU3ibWMfjcqaR7MJ_JZ7D&s=10" alt="Beef Steak" width="150">
-    </div>
-    <div class="Menumenu">
-    <span>Vegetable Stir Fry - 48</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR17JYIdEyTTxMRsI9tW5-Vcjl2t4hT5Ek-c7hgQSCq4jXZlbYT2g8-QKc&s=10" alt="Vegetable Stir Fry" width="150">
-    </div>
-    </details>
-
-    <hr>
-    <details>
-        <summary>Sauces</summary>
-    <div class="Menumenu">
-    <span>Tomato Sauce - 5</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaJIrddakFBU3NCAQysOl1LHU01KmmrhOxXK_IlkX9Ew&s=10" alt="Tomato Sauce" width="150">
-    </div>
-    <div class="Menumenu">
-    <span>Alfredo Sauce - 3</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNVDqiglUybdL2vnA45zbY8SNYrLVwnrAIEKavyLK33A&s=10" alt="Alfredo Sauce" width="150">
-    </div>
-    <div class="Menumenu">
-    <span>Pesto Sauce - 4</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP3YykKv2_FX-_PZEBEnXU2b7m0YtmYHv-9l8RSrnjVw&s=10" alt="Pesto Sauce" width="150">
-    </div>
-    </details>
-
-    <hr>
-    <details>
-        <summary>Desserts</summary>
-    <div class="Menumenu">
-    <span>Chocolate Cake - 6</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYrETVh-OwU661ytPsefXudiT5DZISALeN0vL6dHOXRg&s=10" alt="Chocolate Cake" width="150">
-    </div>
-    <div class="Menumenu">
-    <span>Cheesecake - 7</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSderLQgAShaFLhYicLsxj0zpTv1j_e4yivjx42Gq5u_A&s=10" alt="Cheesecake" width="150">
-    </div>
-    <div class="Menumenu">
-    <span>Ice Cream Sundae - 5</span>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXklomO_P2lDeFjz0XthEHMwiTBzoCrZsERTOEKBkWvQ&s=10" alt="Ice Cream Sundae" width="150">
-    </div>
-    </details>
-    <h2 class="card-container">TODAY'S SPECIALS</h2>
-    <div id="specials-container" class="card-container">
-        
-    </div>
-    <section class="section team-section">
-            <div class="container">
-                <p class="eyebrow" style="text-align: center;">Meet the Creators</p>
-                <h2 class="team-title">The Development Team</h2>
-                
-                <div class="team-grid">
-                    <div class="team-member">
-                        <h3>Adilbek Shangerey</h3>
-                        <p class="team-role">Lead Developer,Made the pages index.html and contact.html</p>
+            <div class="menu-categories">
+            <details class="menu-category">
+                <summary><i class="fa-solid fa-plate-wheat" aria-hidden="true"></i>Appetizers</summary>
+                <div class="menu-list">
+                    <div class="menu-item">
+                        <img src="https://images.themodernproper.com/production/posts/2022/FreshSpringRolls_Shot5_82.jpg?w=1200&amp;h=630&amp;q=82&amp;fm=jpg&amp;fit=crop&amp;dm=1756130992&amp;s=eb3527176b3b8041e1d62870b2dfe906" alt="Spring Rolls" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Spring Rolls</h3>
+                            <p class="menu-item-price">$5</p>
+                        </div>
                     </div>
-                    
-                    <div class="team-member">
-                        <h3>Alizhan Rymkhan</h3>
-                        <p class="team-role">HTML Structure and Quality Control,made the pages about.html and gallery.html</p>
+                    <div class="menu-item">
+                        <img src="https://images.unsplash.com/photo-1573140401552-3fab0b24306f?auto=format&amp;fit=crop&amp;w=400&amp;q=70" alt="Garlic Bread" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Garlic Bread</h3>
+                            <p class="menu-item-price">$3</p>
+                        </div>
                     </div>
-                    
-                    <div class="team-member">
-                        <h3>Yerassyl Gabbas</h3>
-                        <p class="team-role">CSS structure and pages Dishes.html and Drinks.html</p>
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmpN6gzinMjYKzT3-I6av4jmSiPP8SnOeVRoxgVaXobw&amp;s=10" alt="Bruschetta" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Bruschetta</h3>
+                            <p class="menu-item-price">$4</p>
+                        </div>
                     </div>
                 </div>
+            </details>
+
+            <details class="menu-category">
+                <summary><i class="fa-solid fa-bowl-food" aria-hidden="true"></i>Soups</summary>
+                <div class="menu-list">
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPDK7oeQJw7xWz3UfnQrDSwi4HkGOt9o-hSN1WDxxXBQ&amp;s=10" alt="Tomato Soup" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Tomato Soup</h3>
+                            <p class="menu-item-price">$4</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbPmv2-s8p6UB_Hz8JQG92MszNBgIaezlTxLAxSZqicw&amp;s=10" alt="Chicken Noodle Soup" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Chicken Noodle Soup</h3>
+                            <p class="menu-item-price">$5</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT46YE9x-fhdpJeGNJqY5ZsSSbPTUi3Y4lzLyUV6S2Y4vcvoEHmhGOkPaie&amp;s=10" alt="Minestrone Soup" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Minestrone Soup</h3>
+                            <p class="menu-item-price">$6</p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <details class="menu-category">
+                <summary><i class="fa-solid fa-fish" aria-hidden="true"></i>Live Seafood</summary>
+                <div class="menu-list">
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwUb_O7hz35n0MhDUd7osmY0sTZUTNp2FRjFNT3F4WFw&amp;s=10" alt="Grilled Salmon" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Grilled Salmon</h3>
+                            <p class="menu-item-price">$12 / kg</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://cdn.sanity.io/images/2r0kdewr/production/85d24f382c94a9ff4dc98724eaa2ae65e01f0967-1000x668.jpg" alt="Boiled Crab" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Boiled Crab</h3>
+                            <p class="menu-item-price">$10 / kg</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBieBXlBcY7XCguo0gU7eLpugd7ZyWrsF3C78beeSDYHZeWfXPxspr_dl8&amp;s=10" alt="Steamed Mussels" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Steamed Mussels</h3>
+                            <p class="menu-item-price">$11 / kg</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://cdn.sanity.io/images/2r0kdewr/production/502ea467ef99124fd308e34ff5085c485f1be8f7-500x500.jpg" alt="Lobster Tail" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Lobster Tail</h3>
+                            <p class="menu-item-price">$15 / kg</p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <details class="menu-category">
+                <summary><i class="fa-solid fa-drumstick-bite" aria-hidden="true"></i>Main Dishes</summary>
+                <div class="menu-list">
+                    <div class="menu-item">
+                        <img src="https://www.lecremedelacrumb.com/wp-content/uploads/2015/07/sticky-grilled-asian-chicken-5.jpg" alt="Grilled Chicken" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Grilled Chicken</h3>
+                            <p class="menu-item-price">$51</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCMWKYnwsP7rVKCsT9oLOfgDhOiupH5tzTmQngU3ibWMfjcqaR7MJ_JZ7D&amp;s=10" alt="Beef Steak" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Beef Steak</h3>
+                            <p class="menu-item-price">$44</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR17JYIdEyTTxMRsI9tW5-Vcjl2t4hT5Ek-c7hgQSCq4jXZlbYT2g8-QKc&amp;s=10" alt="Vegetable Stir Fry" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Vegetable Stir Fry</h3>
+                            <p class="menu-item-price">$48</p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <details class="menu-category">
+                <summary><i class="fa-solid fa-bottle-droplet" aria-hidden="true"></i>Sauces</summary>
+                <div class="menu-list">
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaJIrddakFBU3NCAQysOl1LHU01KmmrhOxXK_IlkX9Ew&amp;s=10" alt="Tomato Sauce" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Tomato Sauce</h3>
+                            <p class="menu-item-price">$5</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNVDqiglUybdL2vnA45zbY8SNYrLVwnrAIEKavyLK33A&amp;s=10" alt="Alfredo Sauce" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Alfredo Sauce</h3>
+                            <p class="menu-item-price">$3</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP3YykKv2_FX-_PZEBEnXU2b7m0YtmYHv-9l8RSrnjVw&amp;s=10" alt="Pesto Sauce" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Pesto Sauce</h3>
+                            <p class="menu-item-price">$4</p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <details class="menu-category">
+                <summary><i class="fa-solid fa-ice-cream" aria-hidden="true"></i>Desserts</summary>
+                <div class="menu-list">
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYrETVh-OwU661ytPsefXudiT5DZISALeN0vL6dHOXRg&amp;s=10" alt="Chocolate Cake" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Chocolate Cake</h3>
+                            <p class="menu-item-price">$6</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSderLQgAShaFLhYicLsxj0zpTv1j_e4yivjx42Gq5u_A&amp;s=10" alt="Cheesecake" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Cheesecake</h3>
+                            <p class="menu-item-price">$7</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXklomO_P2lDeFjz0XthEHMwiTBzoCrZsERTOEKBkWvQ&amp;s=10" alt="Ice Cream Sundae" loading="lazy">
+                        <div class="menu-item-info">
+                            <h3 class="menu-item-name">Ice Cream Sundae</h3>
+                            <p class="menu-item-price">$5</p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+                <p class="menu-empty" id="menu-empty">Nothing to show yet. Try another word, or tap <i class="fa-regular fa-heart" aria-hidden="true"></i> on a dish to save it as a favourite.</p>
+            </div>
+        </div>
+
+        <section class="section section--surface specials">
+            <div class="container">
+                <div class="section-header">
+                    <p class="eyebrow">Chef's choice</p>
+                    <h2 class="section-title">Today's specials</h2>
+                </div>
+                <!-- Filled by renderSpecials() in js/script.js -->
+                <div id="specials-container" class="card-container"></div>
             </div>
         </section>
-</main>
+    </main>
+    <footer id="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <p class="footer-logo"><span class="brand-kanji" aria-hidden="true">柚子</span> <span class="brand-name">Yuzu Kitchen</span></p>
+                <p>Coastal Japanese cooking in the heart of Astana: fresh seafood, an open kitchen and no rush at the table.</p>
+            </div>
+            <div>
+                <h2 class="footer-heading">Visit us</h2>
+                <p><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Astana, Mangilik El Ave. 55</p>
+                <p><i class="fa-solid fa-phone" aria-hidden="true"></i><a href="tel:+77172552513">+7 (717) 255-25-13</a></p>
+                <p><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="mailto:hello@yuzukitchen.kz">hello@yuzukitchen.kz</a></p>
+            </div>
+            <div>
+                <h2 class="footer-heading">Opening hours</h2>
+                <p>Mon – Thu: 10:00 – 23:00</p>
+                <p>Fri: 10:00 – 00:00</p>
+                <p>Sat: 11:00 – 00:00</p>
+                <p>Sun: 11:00 – 22:00</p>
+            </div>
+            <div>
+                <h2 class="footer-heading">Explore</h2>
+                <ul class="footer-links">
+                    <li><a href="dishes.html">Our menu</a></li>
+                    <li><a href="recipes.html">Cook at home</a></li>
+                    <li><a href="contact.html">Book a table</a></li>
+                    <li><a href="profile.html">My profile</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="footer-bottom">© 2026 Yuzu Kitchen · Made by Alizhan Rymkhan, Adilbek Shangerey and Yerassyl Gabbas</p>
+    </footer>
 
-   <footer id="site-footer">
-    <div class="container">
-        <p>Team members: Alizhan Rymkhan, Adilbek Shangerey, Yerassyl Gabbas</p>
-    </div> 
-    </footer> 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

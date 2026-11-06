@@ -3,115 +3,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacts and Booking - Yuzu Kitchen</title>
+    <meta name="description" content="Book a table at Yuzu Kitchen online, or call, email or visit us in Astana.">
+    <title>Contact & Booking · Yuzu Kitchen</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+
+    <!-- Fonts and icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=BJCree:wght@400;500;600;700&family=Nothing+You+Could+Do&family=Rampart+One&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400&family=BJCree:wght@400;600;700&family=Nothing+You+Could+Do&family=Rampart+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Assignment 6: jQuery from CDN -->
+    <!-- Applies the saved light / dark theme before the page is drawn -->
+    <script src="js/theme.js"></script>
+    <!-- jQuery (used by js/script.js) -->
     <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
-
 </head>
 <body>
-    
+    <a class="skip-link" href="#main">Skip to content</a>
+
     <header id="main-header">
-        <div>
-        <h1 id="kanji">柚子</h1>
-        <h1 id="yuzu">Yuzu Kitchen</h1>
-        </div>
-        <nav>
+        <a href="index.html" class="brand" aria-label="Yuzu Kitchen, home page">
+            <span class="brand-kanji" aria-hidden="true">柚子</span>
+            <span class="brand-name">Yuzu Kitchen</span>
+        </a>
+
+        <nav class="main-nav" id="main-nav" aria-label="Main">
             <a href="index.html">Main</a>
             <a href="about.html">About Us</a>
-            <a href="Dishes.html">Dishes</a>
-            <a href="Drinks.html">Drinks</a>
+            <a href="dishes.html">Dishes</a>
+            <a href="drinks.html">Drinks</a>
+            <a href="recipes.html">Recipes</a>
             <a href="gallery.html">Gallery</a>
             <a href="contact.html">Contact</a>
-            <button id="bg-toggle-btn" class="theme-btn">Change Theme</button>
+            <!-- Changes to the user's name after logging in (js/script.js) -->
+            <a href="login.html" class="nav-account" id="nav-account"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i> Log In</a>
         </nav>
+
+        <button type="button" class="theme-switch" id="theme-switch" role="switch" aria-checked="false" aria-label="Dark mode">
+            <span class="theme-switch-track"><span class="theme-switch-thumb"><i class="fa-solid fa-sun" aria-hidden="true"></i></span></span>
+        </button>
+
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+            <span></span><span></span><span></span>
+        </button>
     </header>
-    
-    <main class="contact-main">
-        <img src="https://platform.dc.eater.com/wp-content/uploads/sites/9/chorus/uploads/chorus_asset/file/23236343/D85_0431_HDR.jpeg" alt="Blurred view of Yuzu Kitchen dining hall" class="contact-bg-img">
 
-        <div class="booking-block">
-            <h2>Book a Table</h2>
-            <p style="text-align: center;">Please fill the form below, and our manager will contact you to confirm the booking.</p>
-            <div id="form-feedback" style="display: none; padding: 1rem; margin-top: 1rem; border-radius: 4px; text-align: center;"></div>
-            <button class="submit-btn" id="clear-btn">Clear</button>
-            <form id="contact-form" name="book-form" action="#" onsubmit="return validateForm()" method="POST">
-                
-                
-                <div class="form-group">
-                    <label for="name">Your Name:</label>
-                    <input type="text" id="name" name="name" class="form-control" required>
+    <main id="main" class="contact-main">
+        <img src="https://platform.dc.eater.com/wp-content/uploads/sites/9/chorus/uploads/chorus_asset/file/23236343/D85_0431_HDR.jpeg" alt="" class="contact-bg-img">
+
+        <div class="contact-layout">
+            <section class="booking-block" aria-labelledby="booking-title">
+                <h1 id="booking-title">Book a Table</h1>
+                <p class="form-intro">Fill in the form and we'll keep a table ready for you. Logged-in guests get their details filled in automatically.</p>
+                <form class="booking-form" id="booking-form" action="#" method="post" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="booking-name">Your name</label>
+                            <input type="text" id="booking-name" name="name" class="form-control" autocomplete="name" placeholder="e.g. Aigerim Sultanova" data-validate="required name">
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-email">Email</label>
+                            <input type="text" id="booking-email" name="email" class="form-control" inputmode="email" autocomplete="email" placeholder="name@example.com" data-validate="required email">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="booking-phone">Phone number</label>
+                            <input type="tel" id="booking-phone" name="phone" class="form-control" autocomplete="tel" placeholder="+7 701 234 56 78" data-validate="required phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-hall">Hall</label>
+                            <select id="booking-hall" name="hall" class="form-control" data-validate="required">
+                                <option value="">Choose a hall</option>
+                                <option value="main">Main Hall</option>
+                                <option value="terrace">Summer Terrace</option>
+                                <option value="vip">VIP Room</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="booking-date">Date</label>
+                            <input type="date" id="booking-date" name="date" class="form-control" data-validate="required bookingDate" data-required-message="Please choose a date for your visit.">
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-time">Time</label>
+                            <select id="booking-time" name="time" class="form-control" data-validate="required bookingTime" data-date-field="booking-date">
+                                <option value="">Choose a time</option>
+                            <option value="12:00">12:00</option>
+                            <option value="12:30">12:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:30">13:30</option>
+                            <option value="14:00">14:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="15:00">15:00</option>
+                            <option value="15:30">15:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="16:30">16:30</option>
+                            <option value="17:00">17:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value="18:00">18:00</option>
+                            <option value="18:30">18:30</option>
+                            <option value="19:00">19:00</option>
+                            <option value="19:30">19:30</option>
+                            <option value="20:00">20:00</option>
+                            <option value="20:30">20:30</option>
+                            <option value="21:00">21:00</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <fieldset>
+                            <legend>Table</legend>
+                            <div class="radio-pills">
+                                <input type="radio" id="table-two" name="table_type" value="2_persons" checked>
+                                <label for="table-two"><i class="fa-solid fa-user-group" aria-hidden="true"></i> For two</label>
+                                <input type="radio" id="table-four" name="table_type" value="4_persons">
+                                <label for="table-four"><i class="fa-solid fa-users" aria-hidden="true"></i> For four</label>
+                                <input type="radio" id="table-large" name="table_type" value="large">
+                                <label for="table-large"><i class="fa-solid fa-people-group" aria-hidden="true"></i> Big company</label>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="booking-message">Special requests <span class="optional">(optional)</span></label>
+                        <textarea id="booking-message" name="message" rows="3" class="form-control" placeholder="Allergies, a kids' chair, a birthday cake..." data-validate="maxLength" data-max-length="300"></textarea>
+                        <p class="char-counter" data-for="booking-message" aria-hidden="true"></p>
+                    </div>
+
+                    <div class="form-alert" role="status" aria-live="polite"></div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i> Book my table</button>
+                        <button type="button" class="btn btn-ghost js-clear-form"><i class="fa-solid fa-eraser" aria-hidden="true"></i> Clear</button>
+                    </div>
+                </form>
+            </section>
+
+            <aside class="contact-panel" aria-label="Contact details">
+                <h2>Reach us directly</h2>
+                <!-- Copy to clipboard -->
+                <div class="contact-info">
+                    <div class="copy-snippet">
+                        <span class="copy-label">Address</span>
+                        <code class="copy-text">Astana, Mangilik El Ave. 55</code>
+                        <button type="button" class="copy-btn" aria-label="Copy address"><i class="copy-icon fa-regular fa-copy" aria-hidden="true"></i><span class="copy-tooltip">Copied to clipboard!</span></button>
+                    </div>
+                    <div class="copy-snippet">
+                        <span class="copy-label">Phone</span>
+                        <code class="copy-text">+7 (717) 255-25-13</code>
+                        <button type="button" class="copy-btn" aria-label="Copy phone number"><i class="copy-icon fa-regular fa-copy" aria-hidden="true"></i><span class="copy-tooltip">Copied to clipboard!</span></button>
+                    </div>
+                    <div class="copy-snippet">
+                        <span class="copy-label">Email</span>
+                        <code class="copy-text">hello@yuzukitchen.kz</code>
+                        <button type="button" class="copy-btn" aria-label="Copy email"><i class="copy-icon fa-regular fa-copy" aria-hidden="true"></i><span class="copy-tooltip">Copied to clipboard!</span></button>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="email">Your Email:</label>
-                    <input type="email" id="email" name="email" class="form-control" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="hall">Choose Hall: </label>
-                    <select id="hall" name="hall" class="form-control">
-                        <option value="main">Main Hall</option>
-                        <option value="terrace">Summer-Terrace</option>
-                        <option value="vip">VIP-Room</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Table Type:</label><br>
-                    <input type="radio" id="table2" name="table_type" value="2_persons" checked>
-                    <label for="table2" style="display:inline; font-weight:normal;">For Two</label><br>
-                    
-                    <input type="radio" id="table4" name="table_type" value="4_persons">
-                    <label for="table4" style="display:inline; font-weight:normal;">For four</label><br>
-                    
-                    <input type="radio" id="tableLarge" name="table_type" value="large">
-                    <label for="tableLarge" style="display:inline; font-weight:normal;">For Big Company</label>
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Your Requests</label>
-                    <textarea id="message" name="message" rows="4" class="form-control" placeholder="For example: Allergies, Kids Table and ETC...."></textarea>
-                </div>
-
-                <button type="submit" class="submit-btn" style="width: 100%;">Submit Request</button>
-
-            </form>
-
-            <!-- Assignment 6, Task 8: copy to clipboard -->
-            <div class="contact-info">
-                <h3>Reach us directly</h3>
-                <div class="copy-snippet">
-                    <span class="copy-label">Address</span>
-                    <code class="copy-text">Astana, Mangilik El Ave. 55</code>
-                    <button type="button" class="copy-btn" aria-label="Copy address"><span class="copy-icon">⧉</span><span class="copy-tooltip">Copied to clipboard!</span></button>
-                </div>
-                <div class="copy-snippet">
-                    <span class="copy-label">Phone</span>
-                    <code class="copy-text">+7 (717) 255-25-13</code>
-                    <button type="button" class="copy-btn" aria-label="Copy phone number"><span class="copy-icon">⧉</span><span class="copy-tooltip">Copied to clipboard!</span></button>
-                </div>
-                <div class="copy-snippet">
-                    <span class="copy-label">Email</span>
-                    <code class="copy-text">hello@yuzukitchen.kz</code>
-                    <button type="button" class="copy-btn" aria-label="Copy email"><span class="copy-icon">⧉</span><span class="copy-tooltip">Copied to clipboard!</span></button>
-                </div>
-            </div>
+                <h2 class="panel-subtitle">Opening hours</h2>
+                <table class="hours-table">
+                    <tr><td>Mon – Thu</td><td>10:00 – 23:00</td></tr>
+                    <tr><td>Friday</td><td>10:00 – 00:00</td></tr>
+                    <tr><td>Saturday</td><td>11:00 – 00:00</td></tr>
+                    <tr><td>Sunday</td><td>11:00 – 22:00</td></tr>
+                </table>
+            </aside>
         </div>
     </main>
-
-    
     <footer id="site-footer">
-    <div class="container">
-        <p>Team members: Alizhan Rymkhan, Adilbek Shangerey, Yerassyl Gabbas</p>
-    </div> 
-    </footer> 
-    <script src="script.js"></script>
+        <div class="container footer-grid">
+            <div>
+                <p class="footer-logo"><span class="brand-kanji" aria-hidden="true">柚子</span> <span class="brand-name">Yuzu Kitchen</span></p>
+                <p>Coastal Japanese cooking in the heart of Astana: fresh seafood, an open kitchen and no rush at the table.</p>
+            </div>
+            <div>
+                <h2 class="footer-heading">Visit us</h2>
+                <p><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Astana, Mangilik El Ave. 55</p>
+                <p><i class="fa-solid fa-phone" aria-hidden="true"></i><a href="tel:+77172552513">+7 (717) 255-25-13</a></p>
+                <p><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="mailto:hello@yuzukitchen.kz">hello@yuzukitchen.kz</a></p>
+            </div>
+            <div>
+                <h2 class="footer-heading">Opening hours</h2>
+                <p>Mon – Thu: 10:00 – 23:00</p>
+                <p>Fri: 10:00 – 00:00</p>
+                <p>Sat: 11:00 – 00:00</p>
+                <p>Sun: 11:00 – 22:00</p>
+            </div>
+            <div>
+                <h2 class="footer-heading">Explore</h2>
+                <ul class="footer-links">
+                    <li><a href="dishes.html">Our menu</a></li>
+                    <li><a href="recipes.html">Cook at home</a></li>
+                    <li><a href="contact.html">Book a table</a></li>
+                    <li><a href="profile.html">My profile</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="footer-bottom">© 2026 Yuzu Kitchen · Made by Alizhan Rymkhan, Adilbek Shangerey and Yerassyl Gabbas</p>
+    </footer>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
